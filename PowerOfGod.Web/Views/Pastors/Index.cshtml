@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Booking.Pastor>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUserLess.cshtml";
+}
+<br /><br /><br /><br /><br />
+<h2>Pastor details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.typeOfPastor.Pastortype)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PfirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PlastName)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.BookAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cellnumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.typeOfPastor.Pastortype)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PfirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlastName)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.BookAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cellnumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PastorID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PastorID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PastorID })
+        </td>*@
+    </tr>
+}
+
+</table>

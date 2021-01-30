@@ -1,0 +1,91 @@
+﻿@model PowerOfGod.Domain.Entity.Employee.Roster
+
+@if (User.IsInRole("SupperAdmin"))
+{
+    ViewBag.Title = "Create";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    ViewBag.Title = "Create";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<div style="margin-bottom:10%;"></div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <h3 class="page-header"><i class="fa fa-list-alt"></i>Add Employee To Roster</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">Home</a></li>
+            <li><i class="fa fa-desktop"></i>Roster</li>
+            <li><i class="fa fa-list-alt"></i>Add Employee</li>
+        </ol>
+    </div>
+    <hr />
+    <div class="form-horizontal">
+        <div style="margin-bottom:4%;"></div>
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.startTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.startTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.startTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.endTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.endTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.endTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.deptCode, "Department Code", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("deptCode", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.deptCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmpNum, "Employee Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("EmpNum", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmpNum, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    $(function () {
+        $("#hireDate").datepicker();
+    });
+</script>

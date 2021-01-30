@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Booking.Venue>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUserLess.cshtml";
+}
+<br /><br /><br /><br /><br />
+<h2>Venue Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOFVenue.VenueType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue_Name)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Image_Url)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue_Capacity)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeOFVenue.VenueType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue_Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Image_Url)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue_Capacity)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VenueID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VenueID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VenueID })
+        </td>*@
+    </tr>
+}
+
+</table>

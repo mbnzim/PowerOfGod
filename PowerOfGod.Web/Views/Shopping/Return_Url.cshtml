@@ -1,0 +1,133 @@
+﻿
+@{
+    ViewBag.Title = "Payment Successful";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+<h2 class="title text-center">@ViewBag.Title</h2>
+<h3>Order Details</h3>
+
+<img src="~/images/Header.png" />
+<div class="row">
+    <div class="col-md-4">
+        <b>Account Details</b>
+        @{  PowerOfGod.Domain.Entity.Memberss.Members Account = (PowerOfGod.Domain.Entity.Memberss.Members)ViewBag.Account; }
+
+        <table class="table">
+            <tr>
+                <td>Name</td>
+                <td>@Account.FirstName   @Account.LastName</td>
+            </tr>
+            <tr>
+                <td>Cell Number</td>
+                <td>@Account.PhoneNumber</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>@Account.Email</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-6">
+
+        <b>Order Details</b>
+        @{ PowerOfGod.Domain.Entity.Shopping.Order order = (PowerOfGod.Domain.Entity.Shopping.Order)ViewBag.Order; }
+
+        <table class="table">
+            <tr>
+                <td>Order No.</td>
+                <td>@order.Order_ID</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>@order.status</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+
+        <b>Shipping Details</b>
+        @{ PowerOfGod.Domain.Entity.Shopping.Order_Address address = (PowerOfGod.Domain.Entity.Shopping.Order_Address)ViewBag.Address; }
+        @if (address != null)
+        {
+            <table class="table">
+                <tr>
+                    <td>Street</td>
+                    <td>@address.street</td>
+                </tr>
+                <tr>
+                    <td>City/Town</td>
+                    <td>@address.city</td>
+                </tr>
+                <tr>
+                    <td>Zipcode</td>
+                    <td>@address.zipcode</td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <hr />
+            <p>
+                Collect your order at our Church Power of God Assemblles.
+                <h4 class="head text-center">Collect your order at Power Of God Assembles church.</h4>
+                <h4> <i class="fa fa-map-marker"></i>  Umlazi J isidingo Road, Durban, 4031 </h4>
+                <h4> <i class="fa fa-clock-o"></i>  Monday - Friday</h4>
+                <h4> <i class="fa fa-clock-o"></i>  8:30 am - 17:00 pm working hours  Also Sundays During service</h4>
+            </p>
+        }
+    </div>
+    <div class="col-md-6">
+
+        <b>Items in this Order</b>
+        <table class="table">
+            <tr>
+                <th>
+                    Picture
+                </th>
+                <th>
+                    Item
+                </th>
+                <th>
+                    Qty
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+            @foreach (var item in (List<PowerOfGod.Domain.Entity.Shopping.Order_Item>)ViewBag.Items)
+            {
+                <tr>
+                    <td>
+                        @if (item.Item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(item.Item.Picture);
+                            var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                            <img src="@imgSrc" width="60" height="70" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>
+                    @ViewBag.Total.ToString("R0.00")
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>

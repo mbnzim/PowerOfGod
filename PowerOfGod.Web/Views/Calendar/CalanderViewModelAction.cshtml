@@ -1,0 +1,74 @@
+﻿@model PagedList.IPagedList<PowerOfGod.ViewModel.EmployeeViewModel.CalanderViewModel>
+@using PagedList.Mvc
+@using PagedList
+
+@{
+    ViewBag.Title = "CalanderViewModelAction";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div style="margin-bottom:10%;"></div>
+
+<h3 class="page-header"><i class="fa fa-list-alt"></i>My Roster</h3>
+<ol class="breadcrumb">
+    <li><i class="fa fa-home"></i><a href="~/User/ViewModelAction">My Profile</a></li>
+    <li><i class="fa fa-desktop"></i>Roster</li>
+    <li><i class="fa fa-list-alt"></i>My Roster</li>
+</ol>
+
+<table class="table table-striped table-condensed table-bordered">
+    <tr>
+        @*<th>
+            @Html.DisplayName("Employee Number")
+        </th>
+        <th>
+            @Html.DisplayName("Full Name")
+        </th>*@
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("Start Time")
+        </th>
+        <th>
+            @Html.DisplayName("End Time")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.text)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endTime)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>*@
+        </tr>
+    }
+
+</table>
+<br />
+<div style="text-align: center">
+    <p>
+        @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </p>
+    <p style="margin-top: -25px">
+        @Html.PagedListPager(Model, page => Url.Action("CalanderViewModelAction", new { page }))
+    </p>
+</div>
+

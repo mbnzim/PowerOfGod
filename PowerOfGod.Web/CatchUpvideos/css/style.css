@@ -1,0 +1,90 @@
+@import url(https://fonts.googleapis.com/css?family=Racing+Sans+One);
+body{
+  background:#2c3e50;
+  margin:0 auto;
+  padding:0;
+  text-align:center;
+}
+h1{
+  text-align:center;
+  color:#ecf0f1;
+  font-family:'Racing Sans One', cursive;
+  text-shadow:0 2px 2px #0c0e50;
+}
+.youtube_videos{
+  list-style:none;
+  margin:0 auto;
+  display:block;
+  padding:0;
+}
+.youtube_videos .youtube{
+  display:inline-block;
+  margin-bottom:1em;
+  margin-right:0.5em;
+  margin-left:0.5em;
+  margin-top:0;
+  
+}
+.youtube,.thumb{
+  width:380px;
+  height:250px;
+  cursor:pointer;
+  position:relative;
+  -webkit-box-shadow:0 0.5px 2px #1D242B;
+  -moz-box-shadow:0 0.5px 2px #1D242B;
+  box-shadow:0 0.5px 2px #1D242B;
+}
+.youtube_video{
+  width:385px;
+  height:250px;
+}
+.thumb,.youtube_video{
+  padding:5px;
+  background:#34495e;
+  border:0;
+  outline:0;
+}
+.youtube:after{
+  content:"PLAY THIS VIDEO";
+  position:absolute;
+  top:5px;
+  left:5px;
+  width:370px;
+  height:240px;
+  padding:0;
+  margin:0;
+  padding:5px;
+  background:rgba(38, 180, 174, 0.66);
+  text-align:center;
+  line-height:250px;
+  font-family:'Racing Sans One', cursive;
+  color:transparent;
+  -webkit-transition:all 0.8s ease;
+  -moz-transition:all 0.8s ease;
+  -o-transition:all 0.8s ease;
+  transition:all 0.8s ease;
+}
+.youtube:hover:after{
+  top:110px;
+  left:110px;
+  width:165px;
+  height:40px;
+  line-height:40px;
+  background:#34495e;
+  -webkit-transition:all 0.8s ease;
+  -moz-transition:all 0.8s ease;
+  -o-transition:all 0.8s ease;
+  transition:all 0.8s ease;
+  color:#ecf0f1;
+}
+
+
+/* = Responsive comming soon :)
+---------------------------------*/
+/* Desktop */
+@media (min-width:980px) {}
+/* Mobile */
+@media (max-width:480px) {}
+/* Tablet */
+@media (max-width:767px) {}
+@media (min-width:768px) and (max-width:979px) {}

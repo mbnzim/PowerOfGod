@@ -1,0 +1,80 @@
+﻿@*@model IEnumerable<PowerOfGod.Domain.Entity.Employee.Roster>*@
+
+@model PagedList.IPagedList<PowerOfGod.Domain.Entity.Employee.Roster>
+@using PagedList.Mvc
+@using PagedList
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<div style="margin-bottom:10%;"></div>
+<h3 class="page-header">
+    <i class="fa fa-file-text-o"></i>
+    My Profile
+</h3>
+@*<ol class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="#">Home</a></li>
+        <li><i class="fa fa-desktop"></i>Assets</li>
+        <li><i class="fa fa-list-alt"></i>ASSIGNED ASSET</li>
+    </ol>*@
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.departments.deptName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.employees.firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.startTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.endTime)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.departments.deptName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employees.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.startTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.endTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.code }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.code }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.code })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+
+<br />
+@*<div style="text-align: center">
+        <p>
+            @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        </p>
+        <p style="margin-top: -25px">
+            @Html.PagedListPager(Model, page => Url.Action("Roster", new { page }))
+        </p>
+    </div>*@

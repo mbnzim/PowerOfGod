@@ -1,0 +1,50 @@
+h1 {
+  text-align: center;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 50px 0;
+  justify-content: center;
+}
+
+#allImages {
+  width: 200px;
+  height: 300px;
+  overflow-y: scroll;
+  text-align: center;
+  margin-right: 50px;
+}
+
+#mainPicture {
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  box-shadow: 0 0 30px grey;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.list {
+  width: 100px;
+  opacity: 0.5;
+  border: 1px solid black;
+}
+
+#mainImg {
+  width: 500px;
+  height: 300px;
+}
+
+#name {
+  display: none;
+  margin: 20px 0;
+  width: 500px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 900;
+}

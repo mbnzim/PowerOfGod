@@ -1,0 +1,101 @@
+﻿@model PowerOfGod.Domain.Entity.EmployeLeave.EmployeeLeavel
+
+
+@if (User.IsInRole("General-Stuff"))
+{
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+}
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<div style="margin-bottom:10%;"></div>
+
+
+@using (Html.BeginForm("Create", "EmployeeLeavels", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3 class="page-header"><i class="fa fa-list-alt"></i>Request Leave</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">Home</a></li>
+            <li><i class="fa fa-desktop"></i>Leave</li>
+            <li><i class="fa fa-list-alt"></i>Request Leave</li>
+        </ol>
+    </div>
+    <hr />
+  <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @if (@TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+        @if (@ViewBag.Message != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Message</div>
+        }
+        <div style="margin-bottom:4%;"></div>
+    <div class="form-horizontal">
+        @*<div style="margin-bottom:4%;"></div>
+            <div class="form-horizontal">*@
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.leaveTypeID, "Leave Type", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("leaveTypeID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.leaveTypeID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+ 
+        <div class="form-group">
+            @Html.LabelFor(model => model.reason, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.reason, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.reason, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.startDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.startDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.endDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.endDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="img_upload" id="img_upload" />
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+ </div>
+}
+<div>
+    @Html.ActionLink("View Leaves", "LeaveViewModelView", "LeaveModelView", null, new { @class = "btn btn-default" })
+</div>

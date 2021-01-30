@@ -1,0 +1,113 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.VenueBooking
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutUserLess.cshtml";
+}
+<br /><br /><br /><br /><br />
+<h2>Venue Booking</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <br /><br />
+        <br />
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Vstart_date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Vstart_date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Vstart_date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.ReserveVenue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ReserveVenue)
+                    @Html.ValidationMessageFor(model => model.ReserveVenue, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescriptionID, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DescriptionID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DescriptionID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VenueID, "Venue", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("VenueID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.VenueID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+       
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<br /><br /><br />
+
+@*<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+<link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+@section Scripts {
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0",
+                minDate: new Date(),
+                singleMonth: true,
+                beforeShowDay: function (t) {
+                    var valid = t.getDay() !== 0; //disable sunday
+                    var _class = '';
+                    // var _tooltip = valid ? '' : 'weekends are disabled';
+                    return [valid, _class];
+
+                }
+            });
+
+        });
+    </script>
+}

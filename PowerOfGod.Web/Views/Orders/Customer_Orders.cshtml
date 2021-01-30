@@ -1,0 +1,235 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Shopping.Order>
+
+@{
+    var order = ViewBag.Status;
+    ViewBag.Title ="Customer Orders | " + order;
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+<style type="text/css">
+    .stepwizard-step p {
+        margin-top: 10px;
+    }
+
+    .stepwizard-row {
+        display: table-row;
+    }
+
+    .stepwizard {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+
+    .stepwizard-step button[disabled] {
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important;
+    }
+
+    .stepwizard-row:before {
+        top: 14px;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+        z-order: 0;
+    }
+
+    .stepwizard-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+
+    .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+    }
+</style>
+<h2 class="title text-center">@ViewBag.Title</h2>
+<div class="row">
+    <div class="stepwizard">
+
+        <div class="stepwizard-row">
+            <div class="stepwizard-step">
+                @if (order.ToLower().Equals("all".ToLower()))
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="all" })" class="btn btn-primary btn-circle">
+
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="all" })" class="btn btn-default btn-circle">
+
+                    </a>
+                }
+                <p>All Statuses</p>
+            </div>
+            <div class="stepwizard-step">
+                @if (order.ToLower().Contains("Awaiting Payment".ToLower()))
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="Awaiting Payment" })" class="btn btn-primary btn-circle">
+
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="Awaiting Payment" })" class="btn btn-default btn-circle">
+
+                    </a>
+                }
+                <p>Awaiting Payment</p>
+            </div>
+            <div class="stepwizard-step">
+                @if (order.ToLower().Contains("At warehouse".ToLower()))
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="At The Church" })" class="btn btn-primary btn-circle">
+
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="At The Church" })" class="btn btn-default btn-circle">
+
+                    </a>
+                }
+                <p>At warehouse</p>
+            </div>
+            <div class="stepwizard-step">
+                @if (order.ToLower().Contains("With courier".ToLower()))
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="With courier" })" class="btn btn-primary btn-circle">
+
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="With courier" })" class="btn btn-default btn-circle">
+
+                    </a>
+                }
+                <p>With courier</p>
+            </div>
+            <div class="stepwizard-step">
+                @if (order.ToLower().Contains("Scheduled for delivery".ToLower()))
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="Scheduled for delivery" })" class="btn btn-primary btn-circle">
+
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="Scheduled for delivery" })" class="btn btn-default btn-circle">
+
+                    </a>
+                }
+                <p>Scheduled for delivery</p>
+            </div>
+            <div class="stepwizard-step">
+                @if (order.ToLower().Contains("En route for delivery".ToLower()))
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="En route for delivery" })" class="btn btn-primary btn-circle">
+
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="En route for delivery" })" class="btn btn-default btn-circle">
+
+                    </a>
+                }
+                <p>En route for delivery</p>
+            </div>
+            <div class="stepwizard-step">
+                @if (order.ToLower().Equals("Delivered".ToLower()))
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="Delivered" })" class="btn btn-primary btn-circle">
+
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Customer_Orders","Orders",new { id ="Delivered" })" class="btn btn-default btn-circle">
+
+                    </a>
+                }
+                <p>Delivered</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-hover table-striped" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                ID
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Time
+            </th>
+            <th>
+                Customer
+            </th>
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    #@Html.DisplayFor(modelItem => item.Order_ID)
+                </td>
+                <td>
+                    @item.date_created.ToLongDateString()
+                </td>
+                <td>
+                    @item.date_created.ToLongTimeString()
+                </td>
+                <td>
+                    @item.members.FirstName  @item.members.LastName 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    <a href="@Url.Action("Order_Details","Orders", new { id=item.Order_ID })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<script type="text/javascript">
+    $('#my_list').dataTable(
+          {
+              dom: 'Bfrtip',
+              lengthMenu: [
+                  [ 10, 25, 50, -1 ],
+                  [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+              ],
+              buttons: [
+                  'pageLength', 'pdf', 'print'
+              ]
+          }
+        );
+    $('#my_list')
+       .removeClass('display')
+       .addClass('table table-striped table-hover');
+</script>

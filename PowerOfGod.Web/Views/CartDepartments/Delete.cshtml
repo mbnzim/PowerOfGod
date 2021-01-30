@@ -1,0 +1,59 @@
+﻿@model PowerOfGod.Domain.Entity.Shopping.CartDepartment
+
+@{
+    ViewBag.Title = "Delete Department?";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-10 col-sm-6 col-xs-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-red"><i class="fa fa-warning"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-number">Please Note</span>
+                <br />
+                <b>This information and all its sub-content will be permanently removed.</b>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div><!-- /.col -->
+</div>
+
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th>@Html.LabelFor(model => model.Department_ID)</th>
+            <td>
+                @Html.DisplayFor(model => model.Department_ID)
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(model => model.Department_Name)</th>
+            <td>
+                @Html.DisplayFor(model => model.Department_Name)                
+            </td>
+        </tr>
+        <tr>
+            <th>@Html.LabelFor(model => model.Description)</th>
+            <td>
+                @Html.DisplayFor(model => model.Description)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a class="btn btn-default" href="@Url.Action("Index","Departments")">
+                    <i class="fa fa-angle-left"></i>
+                    Back to List
+                </a>
+            </td>
+            <td>
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+    }
+</div>

@@ -1,0 +1,40 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.VenueBooking
+
+
+@{
+    ViewBag.Title = "Acknowledgement";
+}
+
+<h2>Acknowledgement</h2>
+<p>Your Name   :  @Html.DisplayFor(Name => Name.UserId)</p>
+<p>Booking Date  :  @Html.DisplayFor(Date => Date.Start_date)</p>
+@*Your Name*@
+@*Your Address
+    Your City, State, Zip Code
+    Your Phone Number
+    Your Email*@
+@*Date*@
+
+
+<p>Title:Donation Acknowledgement </p>
+<p>Company: Power Of God Assembles</p>
+<p>Address:Isding Rd , Umalzi J, </p>
+<p>City:Umalzi State:KZN Zip Code:408</p>
+<p></p>
+<p></p>
+
+<p>Dear @Html.DisplayFor(Name => Name.UserId)</p>;
+<p>On behalf of Power Of God Assembles, we would like to thank you for your generous donation of R @Html.DisplayFor(Amount => Amount.BookingAmount), which we received on @Html.DisplayFor(Date => Date.Start_date). Your support will go a long way in helping us achieve our goals of @Html.DisplayFor(Description => Description.ReasonID).</p>
+<p>As you know, Power Of God Assembles is a non-profit organization and is subject to tax exemption. This is to certify that no goods and services were provided in exchange for this donation and will serve as documentation for your tax records. Please keep this letter as your receipt for the donation made to Power Of God Assembles.</p>
+<p>Thank you very much for your continued support of our program.</p>
+<p></p>
+<p></p>
+<p>Sincerely,</p>
+<p>Your name and signature</p>
+<p>Position</p>
+<p>Power Of God Assembles</p>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

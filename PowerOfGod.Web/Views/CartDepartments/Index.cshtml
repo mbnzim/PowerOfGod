@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Shopping.CartDepartment>
+@{
+    ViewBag.Title = "Departments";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+@*@if (User.IsInRole("SupperAdmin"))
+{
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}*@
+<h2 class="title text-center">@ViewBag.Title</h2>
+<a class="btn btn-default" href="@Url.Action("Create","CartDepartments")">
+    <i class="fa fa-plus"></i>
+    Create New
+</a>
+<table class="table table-hover table-striped" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.Department_ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department_Name)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department_ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department_Name)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                <td>
+                    <a href="@Url.Action("Details","Departments", new { id=item.Department_ID })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                    <a href="@Url.Action("Edit","Departments", new { id=item.Department_ID })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                    <a href="@Url.Action("Delete", "Departments", new { id = item.Department_ID })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'pdf', 'print'
+            ]
+        }
+    );
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-striped table-hover');
+</script>

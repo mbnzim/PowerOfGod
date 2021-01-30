@@ -1,0 +1,120 @@
+﻿@*@model PowerOfGod.ViewModel.EmployeeViewModel.ContactUsViewModel*@
+
+@model IEnumerable<PowerOfGod.ViewModel.EmployeeViewModel.ContactUsViewModel>
+
+@{
+    //ViewBag.Title = "Inbox";
+    Layout = null;
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+<style>
+
+    #urlddl {
+        width: 18%;
+        padding: 8px;
+        text-align: justify;
+        float: right;
+    }
+
+        #urlddl a {
+            padding: 5px;
+        }
+</style>
+<style>
+
+    fieldset {
+        width: 90%;
+        border-bottom: 1px solid #b7b7b7;
+        margin-bottom: 15px;
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    .tabs {
+        padding-top: 2%;
+        margin-left: 15%;
+    }
+
+        .tabs span {
+            display: inline-block;
+            padding-right: 4px;
+        }
+
+    strong span {
+        display: inline-block;
+        padding-right: 6px;
+    }
+</style>
+<div style="margin-bottom:2%;"></div>
+@using (Html.BeginForm("AllMessages", "EmailUs", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-7">
+        <span><input type="search" name="search" placeholder="Enter keyword" /> <input type="submit" class="btn btn-default" value="Search" /></span>
+    </div>
+}
+@*<div class="btn-group">
+        <a class="btn btn-default" href="" title="Bootstrap 3 themes generator">
+            <span class="icon_lightbulb_alt"></span>
+            View
+        </a>
+        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="" title="Bootstrap 3 themes generator"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="~/Tickets/OpenedMail">Opened</a></li>
+            <li><a href="~/Tickets/unReadmail">Unread</a></li>
+
+            <li class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cancel</a></li>
+        </ul>
+    </div>*@
+@foreach (var item in Model)
+{
+    if (item.read == false)
+    {
+
+        <div class="col-md-10">
+            <h3>
+                <strong>
+                    <span><img src="~/Content1/closedenvelope.png" width="30" height="20" title="unRead" /></span>
+                    @Html.ActionLink(item.subject, "InboxDetails", "EmailUs", new { id = item.id }, new { @class = "link" })
+                </strong>
+            </h3>
+        </div>
+        <fieldset>
+            <div class="col-md-10">
+                <p>
+                    @Html.DisplayFor(i => item.body)
+                    <div class="tabs">
+                        <span>Date Sent: @Html.DisplayFor(i => item.datesent)</span>
+                    </div>
+                </p>
+            </div>
+        </fieldset>
+    }
+    else
+    {
+        <div class="col-md-10">
+            <h3>
+                <strong>
+                    <span><img src="~/Content1/openenvelope.png" width="30" height="25" title="Opened" /></span>
+                    @Html.ActionLink(item.subject, "InboxDetails", "EmailUs", new { id = item.id }, new { @class = "link" })
+                </strong>
+            </h3>
+        </div>
+        <fieldset>
+            <div class="col-md-10">
+                <p>
+                    @Html.DisplayFor(i => item.body)
+                    <div class="tabs">
+                        <span>Date Sent: @Html.DisplayFor(i => item.datesent)</span>
+                    </div>
+                </p>
+            </div>
+        </fieldset>
+    }
+}

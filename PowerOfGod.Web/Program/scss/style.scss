@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css?family=News+Cycle');
+
+:root {
+  --font: 'News Cycle', Helvetica, sans-serif;
+  --accent: #9ccf5e;
+  --bg: #403638;
+  --transform: translate(-50%, -50%);
+}
+
+// primary layout
+aside {
+  position: relative;
+  flex: 1;
+  order: 1;
+}
+main {
+  position: relative;
+  flex: 1;
+  order: 2;
+  overflow: auto;
+  height: 100vh;
+  section {
+    display: flex;
+    min-height: 100vh;
+  }
+}
+
+svg.logo {
+  position: absolute;
+  pointer-event: none;
+  font-size: 100vmax;
+  width: 1em;
+  height: 1em;
+  top: 50%;
+  left: 50%;
+  will-change: transform;
+  transform: var(--transform);
+  transition: transform 12000ms ease-in-out;
+  mix-blend-mode: overlay;
+  path {
+    fill: var(--accent);
+    transition: fill 3000ms linear;
+  }
+}
+
+// schedule listing
+main {
+  background: rgba(#001, .8);
+  color: #fff;
+  header {
+    flex: 0 0 auto;
+    writing-mode: vertical-rl;
+    padding: 1em .5em;
+    color: rgba(#001, .4);
+    background: #fff;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  li {
+    position: relative;
+    transition: font-size 300ms ease-in, opacity 300ms ease-in;
+    font-size: .5em;
+    opacity: .2;
+    line-height: 1.2;
+    &.current {
+      font-size: 1em;
+      opacity: 1;
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -2rem;
+        transform: translateY(-.5rem);
+        border: .5em solid;
+        border-width: 1em 0 1em .625em;
+        border-color: transparent;
+        border-left-color: currentColor;
+      }
+      ~ li {
+        opacity: .4;
+      }
+      + li {
+        font-size: .675em;
+        opacity: .7;
+      }
+    }
+  }
+}
+h1 {
+  position: relative;
+  top: .65em;
+  left: .65em;
+  margin: 0;
+  line-height: 1;
+  display: inline;
+}
+h3 {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 200;
+  font-size: 1.325em;
+  b {
+    font-weight: 900;
+  }
+}
+
+// playground
+.clock {
+  position: absolute;
+  font-size: 1em;
+  top: 1em;
+  right: 1em;
+  transform: translate(0, calc(-1.3em + var(--y)));
+  transition: transform 300ms ease-out;
+}
+
+small {
+  font-size: .75em;
+  color: var(--accent);
+  transition: color 3000ms linear;
+  small {
+    font-size: .85em;
+  }
+}
+
+// before/after hours
+main li.after-hours {
+  animation: fade-in 1000ms ease-in 80ms forwards;
+  position: fixed;
+  font-size: 1.2em;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(#000, .85);
+  line-height: 1.5;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  opacity: 0;
+  // z-index: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+main li.current ~ li.after-hours {
+  display: none;
+  opacity: 0;
+}
+
+// multi-day presentation
+// main section + section {
+//   ul {
+//     box-shadow: 0 1px 0 0 inset;
+//   }
+//   header {
+//     box-shadow: 0 1px 0 0 inset;
+//   }
+// }
+
+// animations
+@keyframes fade-in {
+  100% {opacity: 1;}
+}
+
+// demo
+.control {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  right: 0;
+  font-size: .5em;
+  background: rgba(#000, .7);
+  transform: translateY(calc(100% - 2em));
+  transition: transform 300ms ease-out;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    div {
+      padding-left: 1em;
+    }
+  }
+  > div {
+    padding: 1em;
+  }
+  p {
+    margin: 0;
+    + p {
+      margin-top: 1em;
+    }
+  }
+  input[type=range] {
+    padding: 0;
+    border: 0;
+    width: 15em;
+    vertical-align: middle;
+    border-radius: 1em;
+    background: rgba(#fff, 0.3);
+    font-size: 1rem;
+    line-height: 1;
+    appearance: none;
+    outline: none;
+    transition: all .3s;
+    outline-offset: 0;
+    margin: 0;
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 1em;
+      height: 1em;
+      border: none;
+      border-radius: 1em;
+      background: #E2E4E6;
+      background-image: none;
+      transform: scale(2);
+      transition: all .3s;
+    }
+  }
+  button {
+    font: inherit;
+    border: none;
+    color: inherit;
+    width: 2em;
+    height: 2em;
+    font-size: 1em;
+    font-weight: 100;
+    background: rgba(#fff, .4);
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+  &.show {
+    transform: translateY(0%);
+    button {
+      transform: rotate(0deg);
+    }
+  }
+}
+
+// boring
+*, *::before, *::after {box-sizing: border-box;}
+
+html, body {
+  background: var(--bg); // fixes chrome 58+ mix-blend-mode bug
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  overflow: hidden;
+  font-family: var(--font);
+  font-size: calc(1em + 1.5vmin);
+  // background: var(--bg);
+  transition: background 1500ms linear;
+  color: #fff;
+}
+
+// safari fix
+main header {
+   height: 100%;
+}
+
+// firefox fix
+main header {
+  width: 0px;
+  padding: 1em 1.25em;
+  line-height: 0;
+}

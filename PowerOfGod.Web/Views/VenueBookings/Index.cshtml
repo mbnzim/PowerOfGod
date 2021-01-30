@@ -1,0 +1,90 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Booking.VenueBooking>
+
+@if (User.IsInRole("SupperAdmin"))
+{
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+<br /><br /><br />
+<h2>Venue Booking</h2>
+<br />
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VenueBookingDescription.booking_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vstart_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.BookedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue_Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue.Venue_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VenueBookingDescription.booking_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vstart_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberInUse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookedBy)
+        </td>
+        <td>
+                       <div class="btn-group">
+                                <a class="btn btn-default" href="" title="Bootstrap 3 themes generator">
+                                    <span class="icon_lightbulb_alt"></span>
+                                    Options
+                                </a>
+                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="" title="Bootstrap 3 themes generator"><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href=""> @Html.ActionLink("Booking Approval", "ApproveVenueBooking", new { id = item.VenueBookingID }) </a></li>
+                                    <li><a href="">@Html.ActionLink("Details", "Details", new { id = item.VenueBookingID }) </a></li>
+                                    <li><a href=""> @Html.ActionLink("Delete", "Delete", new { id = item.VenueBookingID })</a></li>
+
+                                    <li class="divider"></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cancel</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                </tr>
+            }
+
+        </table>

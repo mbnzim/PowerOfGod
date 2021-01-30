@@ -1,0 +1,15 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.PastorBooking
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
+<div style="margin-bottom:10%;"></div>
+
+<div style="margin-bottom:10%;"></div>
+<h3 class="page-header"><i class="fa fa-list-alt"></i>Your Booking Been Successful Please see booking On My Pastor Bookings</h3>
+<div>
+    <li>@Html.ActionLink("Please Pay for Booking", "Payfast", "PastorBookings")</li>
+    <li>@Html.ActionLink("My Pastor Bookings", "ViewModelAction", "PastorBookingViewModels")</li>
+</div>

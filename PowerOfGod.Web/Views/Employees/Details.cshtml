@@ -1,0 +1,113 @@
+﻿@model PowerOfGod.Domain.Entity.Employee.Employees
+
+@if (User.IsInRole("SupperAdmin"))
+{
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+<h2>Details</h2>
+
+<div>
+    <h4>Employees</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.contract.typeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contract.typeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.departments.deptName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departments.deptName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.queue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.queue)
+        </dd>
+        <dd>
+            <a><img src="data:image/png;base64,@Convert.ToBase64String(Model.Picture, 0, Model.Picture.Length)" style="width: 200px; height: 200px" alt="" /></a>
+        </dd>
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmpNum }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

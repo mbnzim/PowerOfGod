@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Booking.VenueBooking>
+
+@{
+    ViewBag.Title = "BookingIndexVenue";
+    Layout = "~/Views/Shared/_LayoutUserLess.cshtml";
+}
+<br /><br /><br /><br /><br />
+<h2>Booking Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VenueBookingDescription.booking_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vstart_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.V_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Venue_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberInUse)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue.Venue_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VenueBookingDescription.booking_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vstart_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.V_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Venue_Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberInUse)
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VenueBookingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VenueBookingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VenueBookingID })
+        </td>*@
+    </tr>
+}
+
+</table>

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Event.Event>
+
+@*@if (User.IsInRole("SupperAdmin"))
+{
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    Layout = "~/Views/Shared/_admin.cshtml";
+}*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLess.cshtml";
+}
+<br /><br /><br /><br /><br />
+<h2>List of Events</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartingTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.End)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vanue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThemeColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFullDay)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.End)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vanue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThemeColor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFullDay)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.EventID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.EventID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.EventID })
+            </td>
+        </tr>
+    }
+
+</table>

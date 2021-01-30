@@ -1,0 +1,123 @@
+﻿@model PowerOfGod.Domain.Entity.Shopping.Order
+
+@{
+    ViewBag.Title = "Order Details";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-5">
+        <h4>Order Details</h4>
+        <table class="table">
+            <tr>
+                <th width="140px">Quotation ID</th>
+                <th>
+                    @Html.DisplayFor(x => x.Order_ID)
+                </th>
+            </tr>
+            <tr>
+                <th>Date Requested</th>
+                <th>
+                    @Model.date_created.ToLongDateString()
+                </th>
+            </tr>
+            <tr>
+                <th>Shipping</th>
+                <th>
+                    @if (Model.shipped)
+                    {
+                        <i class="fa fa-check"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-ellipsis-h"></i>
+                    }
+                </th>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <th>
+                    @Html.DisplayFor(x => x.status)
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    @*<div class="col-md-5">
+        <h4>Accept delivery from</h4>
+        <table class="table">
+
+           
+        </table>
+    </div>*@
+</div>
+<div class="row">
+    <h4>Items in this Order</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Name
+            </th>
+
+            <th>
+                Qty
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Shipment
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Order_Items)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @if (item.replied)
+                    {
+                        <b>@item.price.ToString("R0.00")</b>
+                    }
+                    else
+                    {
+                        <i class="fa fa-ellipsis-h"></i>
+                    }
+                </td>
+                <th>
+                    @if (item.shipped)
+                    {
+                        <i class="fa fa-calendar"> @item.date_shipped</i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-ellipsis-h"></i>
+                    }
+                </th>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.status)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="row text-center">
+        <a class="btn btn-default" href="@Url.Action("Index","Orders")">
+            <i class="fa fa-angle-left"></i>
+            Back to List
+        </a>
+    </div>
+</div>
+

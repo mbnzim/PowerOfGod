@@ -1,0 +1,147 @@
+﻿@model PowerOfGod.ViewModel.ShoppingViewModel.OrderDetailModel
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<img src="~/images/Header.png" />
+<h2 class="title text-center">Review your Order Details </h2>
+<div class="row">
+    <div class="col-md-6">
+        <b>Order Details</b>
+        <table class="table">
+            <tr>
+                <th width="140px">Order Number</th>
+                <th>
+                    @Html.DisplayFor(x => x.order.Order_ID)
+                </th>
+            </tr>
+            <tr>
+                <th>Date Requested</th>
+                <th>
+                    @Model.order.date_created.ToLongDateString()
+                </th>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <th>
+                    @Model.order.status
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        @if (Model.shipping_method == "Standard delivery")
+        {
+            <h4>Receipt by Standard Delivery</h4>
+            <table class="table">
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.address.street_number)</td>
+                    <td>
+                        @Html.DisplayFor(x => x.address.street_number)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.address.street_name)</td>
+                    <td>
+                        @Html.DisplayFor(x => x.address.street_name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.address.City)</td>
+                    <td>
+                        @Html.DisplayFor(x => x.address.City)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.address.State)</td>
+                    <td>
+                        @Html.DisplayFor(x => x.address.State)
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.address.ZipCode)</td>
+                    <td>
+                        @Html.DisplayFor(x => x.address.ZipCode)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.address.Country)</th>
+                    <td>
+                        @Html.DisplayFor(x => x.address.Country)
+                    </td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <hr />
+            <p>
+                Collect your order at our Church Power of God Assemblles.
+                <h4 class="head text-center">Collect your order at Power Of God Assembles church.</h4>
+                <h4> <i class="fa fa-map-marker"></i>  Umlazi J isidingo Road, Durban, 4031 </h4>
+                <h4> <i class="fa fa-clock-o"></i>  Monday - Friday</h4>
+                <h4> <i class="fa fa-clock-o"></i>  8:30 am - 17:00 pm working hours  Also Sundays During service</h4>
+            </p>
+        }
+    </div>
+    <div class="col-md-6">
+        <b>Items in this Order</b>
+        <table class="table">
+            <tr>
+                <th>
+                    Picture
+                </th>
+                <th>
+                    Item
+                </th>
+                <th>
+                    Qty
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+            @foreach (var item in Model.order_items)
+            {
+                <tr>
+                    <td>
+                        @if (item.Item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(item.Item.Picture);
+                            var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                            <img src="@imgSrc" width="60" height="70" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.price)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <th>
+                    @Html.DisplayFor(x => x.order_total)
+                </th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="@Url.Action("Secure_Payment", "Shopping", new { id = Model.order.Order_ID})" class="btn btn-success"><i class="fa fa-lock"></i> Secure Payment</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,224 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>The Power Of God Assembles</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <link href="~/Content1/AdminLayout/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/widgets.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/style.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/xcharts.min.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/owl.carousel.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header class="header dark-bg">
+        <div class="toggle-nav">
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+        </div>
+        <div style="margin-top:20px">
+            Employee : @User.Identity.Name
+        </div>
+    </header>
+    <div>
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu">
+                    <li class="active">
+                        <a href="~/User/ViewModelAction">
+                            <i class="icon_profile"></i>
+                            <span>My Profile</span>
+                        </a>
+
+                    </li>
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_table"></i>
+                            <span>Roster</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li>@Html.ActionLink("My Roster", "CalanderViewModelAction", "Calendar")</li>
+                            @*<li>@Html.ActionLink("Search Asset", "Assigned", "Asset")</li>*@
+                        </ul>
+                    </li>
+                    @*<li class="sub-menu">
+            <a href="javascript:;" class="">
+                <i class="icon_document_alt"></i>
+                <span>Emergency</span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub">
+                <li>@Html.ActionLink("Running Late", "RunningLate", "Emergency")</li>
+                <li>@Html.ActionLink("Not Coming", "NotComing", "Emergency")</li>
+            </ul>
+        </li>*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_genius"></i>
+                            <span>Leave</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li>@Html.ActionLink("Request Leave", "Create", "EmployeeLeavels")</li>
+                            <li>@Html.ActionLink("View Leaves", "LeaveViewModelView", "LeaveModelView")</li>
+                            <li>@Html.ActionLink("ContactUs", "ContactUs", "User")</li>
+                        </ul>
+                    </li>
+                    @*<li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_documents"></i>
+                            <span>Time Sheet</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li>@Html.ActionLink("Check In", "Create", "CheckIns")</li>
+                            <li>@Html.ActionLink("Check Out", "Create", "CheckOuts")</li>
+                        </ul>
+                    </li>*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Donation</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li>@Html.ActionLink("Donate Now", "Create", "Donations")</li>
+                            @*<li>@Html.ActionLink("Search Asset", "Assigned", "Asset")</li>*@
+                        </ul>
+                    </li>
+                    @*<li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_documents"></i>
+                            <span>Announcements</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            <li>@Html.ActionLink("View Announcements", "Index", "Announcements")</li>
+                            <li>@Html.ActionLink("Self Service", "ContactUs", "User")</li>
+                <li>@Html.ActionLink("Knowledge Base", "Base", "Technician")</li>
+                        </ul>
+                    </li>*@
+                    <li class="sub-menu">
+                        <a href="javascript:;" class="">
+                            <i class="icon_documents_alt"></i>
+                            <span>Done</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+                        <ul class="sub">
+                            @*<li>@Html.ActionLink("Logout", "Login", "Home")</li>*@
+                            <li>@Html.Partial("_LoginPartial")</li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Developed by Semicolon</p>
+        </footer>
+    </div>
+    <script src="~/Content1/AdminLayout/js/jquery.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery-1.8.3.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/bootstrap.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.scrollTo.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.nicescroll.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.sparkline.js"></script>
+    <script src="~/Content1/AdminLayout/js/owl.carousel.js"></script>
+    <script src="~/Content1/AdminLayout/assets/jquery-knob/js/jquery.knob.js"></script>
+    <script src="~/Content1/AdminLayout/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.slimscroll.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/charts.js"></script>
+    <script src="~/Content1/AdminLayout/js/sparklines.js"></script>
+    <script src="~/Content1/AdminLayout/js/morris.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/gdp-data.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.placeholder.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.autosize.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/xcharts.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/easy-pie-chart.js"></script>
+    <script src="~/Content1/AdminLayout/js/sparkline-chart.js"></script>
+    <script src="~/Content1/AdminLayout/js/scripts.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.customSelect.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/jquery.rateit.min.js"></script>
+    <script src="~/Content1/AdminLayout/js/calendar-custom.js"></script>
+    <script src="~/Content1/AdminLayout/js/fullcalendar.min.js"></script>
+    <script src="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <script src="~/Content1/AdminLayout/assets/chart-master/Chart.js"></script>
+
+    <script>
+//knob
+        $(function () {
+            $(".knob").knob({
+                'draw': function () {
+                    $(this.i).val(this.cv + '%')
+                }
+            })
+        });
+
+        //carousel
+        $(document).ready(function () {
+            $("#owl-slider").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true
+
+            });
+        });
+
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+        /* ---------- Map ---------- */
+        $(function () {
+            $('#map').vectorMap({
+                map: 'world_mill_en',
+                series: {
+                    regions: [{
+                        values: gdpData,
+                        scale: ['#000', '#000'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                backgroundColor: '#eef3f7',
+                onLabelShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                }
+            });
+        });</script>
+</body>
+</html>

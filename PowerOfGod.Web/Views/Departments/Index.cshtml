@@ -1,0 +1,63 @@
+﻿@model PagedList.IPagedList<PowerOfGod.Domain.Entity.Employee.Departments>
+@using PagedList.Mvc
+@using PagedList
+
+@if (User.IsInRole("SupperAdmin"))
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<div style="margin-bottom:10%;"></div>
+<h3 class="page-header"><i class="fa fa-list-alt"></i>Department</h3>
+<ol class="breadcrumb">
+    <li><i class="fa fa-home"></i><a href="#">Home</a></li>
+    <li><i class="fa fa-desktop"></i>Department</li>
+</ol>
+
+<p style="float:right;">
+    @Html.ActionLink("Add new department", "Create", null, new { @class = "btn btn-default" })
+</p>
+<table class="table table-striped table-condensed table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.deptName)
+        </td>
+      
+
+        <td>
+            <div class="btn-group">
+                <a class="btn btn-default" href="" title="Bootstrap 3 themes generator">
+                    <span class="icon_lightbulb_alt"></span>
+                    Options
+                </a>
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="" title="Bootstrap 3 themes generator"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href=""> @Html.ActionLink("Modify", "Edit", new { id = item.deptCode }) </a></li>
+                    <li><a href="">@Html.ActionLink("Details", "Details", new { id = item.deptCode }) </a></li>
+                    <li><a href=""> @Html.ActionLink("Delete", "Delete", new { id = item.deptCode })</a></li>
+
+                    <li class="divider"></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cancel</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+    }
+
+</table>

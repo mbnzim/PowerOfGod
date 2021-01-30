@@ -1,0 +1,187 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Transactions.Transactions>
+
+
+@*<h2>Index</h2>*@
+@*@if (User.IsInRole("SupperAdmin"))
+    {
+        ViewBag.Title = "FinanceView";
+        Layout = "~/Views/Shared/_basic.cshtml";
+    }*@
+@*@{
+        ViewBag.Title = "Transactions";
+        Layout = "~/Views/Shared/_supadmin.cshtml";
+    }*@
+@{
+    ViewBag.Title = "Transactions";
+    Layout = "~/Views/Shared/_LayoutLess.cshtml";
+}
+
+
+
+@using (Html.BeginForm("FinanceView", "Transactions", FormMethod.Get))
+{
+    <br /><br /><br /><br /><br /><br />
+    <table>
+        <tr>
+            @*height="200" width="1200" align="middle"*@
+            <td>
+                <img src="~/Images/Icons/Shopify Here Icon.png" />
+            </td>
+
+            <td width="50%">
+                Start Date: <input type="text" id="startdate" name="startdate">
+            </td>
+
+            <td width="50%">
+                End Date: <input type="text" id="enddate" name="enddate">
+            </td>
+
+            <td width="20%">
+                <input type="submit" value="search" class="btn btn-default" id="btndatefilter" />
+            </td>
+
+        </tr>
+    </table>
+}
+
+
+<p>@ViewBag.ErrorMessage</p>
+
+
+<br />
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery UI Datepicker - Default functionality</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            $("#startdate").datepicker();
+        });
+        $(function () {
+            $("#enddate").datepicker();
+        });
+    </script>
+
+    @*<style>
+            table, th, td {
+                border: 1px solid black;
+            }
+        </style>*@
+
+</head>
+
+
+@*<body>
+        @using (Html.BeginForm("FinanceView", "Transactions", FormMethod.Get))
+        {
+
+            @*<table style="width:100%">
+                    <tr>
+                        <td width="50%">
+                            start date: <input type="text" id="startdate" name="startdate">
+                        </td>
+
+                        <td width="50%">
+                            <p> </p> end date: <input type="text" id="enddate" name="enddate">
+                        </td>
+                        <td width="20%">
+                            <input type="submit" value="search" class="btn btn-default" id="btndatefilter" />
+                        </td>
+
+                    </tr>
+                </table>
+        }
+    </body>*@
+
+</html>
+
+
+<table class="table table-striped table-condensed table-bordered">
+    <tr></tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionCode.transTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionCode.transTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.transId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.transId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.transId })
+                </td>*@
+        </tr>
+    }
+
+</table>
+@*<div align="center" style="border:2px solid blue">
+        <p> <b>Total Income : R @ViewBag.Income</b></p>
+        <p><b>Total Expense: R @ViewBag.SumOfExpenses</b></p>
+    </div>*@
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('input[type=datetime]').startdate({
+            dateFormat: "dd/M/yy",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-60:+0"
+        });
+    }
+
+            $(document).ready(function () {
+            $('input[type=datetime]').enddate({
+                dateFormat: "dd/M/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+
+
+
+            });
+        }
+
+</script>
+
+@section Scripts {
+    @*//https://www.c-sharpcorner.com/UploadFile/ee01e6/how-to-add-jquery-datepicker-in-mvc/
+        By Manish Kumar Choudhary*@
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

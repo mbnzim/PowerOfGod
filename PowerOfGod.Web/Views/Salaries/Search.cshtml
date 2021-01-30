@@ -1,0 +1,119 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Salary.Salary>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+@using (Html.BeginForm("Search", "Salaries", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+
+{
+    <p>@Html.TextBox("search")</p>
+    <p> <input type="submit" value="search" /></p>
+
+}
+<br />
+<br />
+
+@*<p>@ViewBag.ErrorMessage</p>*@
+
+<br />
+<table class="table table-hover table-condensed" id="my_list">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.startTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.endTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hoursWorked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.wage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.startTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.endTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.hoursWorked)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.wage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SalaryId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SalaryId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SalaryId })
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>
+<centre> Total Wage : @ViewBag.pay </centre>
+
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            alert("@ViewBag.Message");
+        };
+    </script>
+}
+
+
+<script type="text/javascript">
+
+    $('#my_list').dataTable(
+        {
+
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                        /*'pageLength',*/ 'pdf', 'print'
+            ]
+        }
+    );
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-condensed table-hover');
+
+</script>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Employee.Roster>
+
+@if (User.IsInRole("SupperAdmin"))
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<div style="margin-bottom:10%;"></div>
+<h3 class="page-header"><i class="fa fa-list-alt"></i>Roster</h3>
+<ol class="breadcrumb">
+    <li><i class="fa fa-home"></i><a href="~/Dashboard/Dashboard">Home</a></li>
+    <li><i class="fa fa-desktop"></i>Roster</li>
+    <li><i class="fa fa-list-alt"></i>Search</li>
+</ol>
+
+<table class="table">
+    <tr>
+        @using (Html.BeginForm("Search", "Rosters", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <th>
+                @Html.Label("Search by Asset Number")
+                @Html.TextBox("search")
+            </th>
+            <th>
+                  <p style="float:right;">
+                    <input type="submit" class="btn btn-default" value="search">
+                    @Html.ActionLink("Add new employee", "Create", null, new { @class = "btn btn-default" })
+                </p>
+            </th>
+        }
+    </tr>
+</table>
+
+<table class="table table-striped table-condensed table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayName("Department")
+        </th>
+        <th>
+            @Html.DisplayName("Employee Name")
+        </th>
+        <th>
+            @Html.DisplayName("Date")
+        </th>
+        <th>
+            @Html.DisplayName("Start Time")
+        </th>
+
+        <th>
+            @Html.DisplayName("End Time")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.departments.deptName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.employees.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endTime)
+            </td>
+
+            @*<td>
+                    <div class="btn-group">
+                        <a class="btn btn-default" href="" title="Bootstrap 3 themes generator">
+                            <span class="icon_lightbulb_alt"></span>
+                            Options
+                        </a>
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="" title="Bootstrap 3 themes generator"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="">@Html.ActionLink("Modify", "Edit", new { id = item.code }) </a></li>
+                            <li><a href="">@Html.ActionLink("Details", "Details", new { id = item.code }) </a></li>
+                            <li><a href=""> @Html.ActionLink("Delete", "Delete", new { id = item.code }) </a></li>
+                              <li class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cancel</a></li>
+                        </ul>
+                    </div>
+                </td>*@
+        </tr>
+    }
+
+</table>

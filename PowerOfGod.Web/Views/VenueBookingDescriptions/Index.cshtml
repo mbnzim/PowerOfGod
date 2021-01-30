@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Booking.VenueBookingDescription>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLess.cshtml";
+}
+<br /><br /><br /><br /><br />
+<h2>Details for venue booking</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.booking_Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.booking_Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DescriptionID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DescriptionID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DescriptionID })
+        </td>
+    </tr>
+}
+
+</table>

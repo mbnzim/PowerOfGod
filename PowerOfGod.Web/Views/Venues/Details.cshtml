@@ -1,0 +1,66 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.Venue
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Venue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOFVenue.VenueType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOFVenue.VenueType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image_Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image_Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Capacity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VenueID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

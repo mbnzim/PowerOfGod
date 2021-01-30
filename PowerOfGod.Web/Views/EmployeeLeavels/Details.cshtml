@@ -1,0 +1,105 @@
+﻿@model PowerOfGod.Domain.Entity.EmployeLeave.EmployeeLeavel
+
+@if (User.IsInRole("SupperAdmin"))
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+<h2>Details</h2>
+
+<div>
+    <br />
+    <h2>EmployeeLeavel</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.leavetype.type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.leavetype.type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.startDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.startDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.endDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.endDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numberOfDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numberOfDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createdBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createdBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updateBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updateBy)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.Picture)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Picture)
+            </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LeaveID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

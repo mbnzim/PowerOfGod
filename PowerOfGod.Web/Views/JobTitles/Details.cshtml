@@ -1,0 +1,42 @@
+﻿@model PowerOfGod.Domain.Entity.Salary.JobTitle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>JobTitle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.departments.deptName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departments.deptName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salaries.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salaries.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.JobTitleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

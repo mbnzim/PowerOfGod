@@ -1,0 +1,82 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Shopping.Order>
+
+@{
+    ViewBag.Title = "Stock Orders";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+<h2 class="title text-center">@ViewBag.Title</h2>
+
+<table class="table table-hover table-striped" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                ID
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Time
+            </th>
+            @*<th>
+                Shipping
+            </th>*@
+            <th>
+                Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order_ID)
+                </td>
+                <td>
+                    @item.date_created.ToLongDateString()
+                </td>
+                <td>
+                    @item.date_created.ToLongTimeString()
+                </td>
+                @*<td>
+                    @if(item.shipped)
+                    {
+                        <i class="fa fa-check">  Yes</i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-ellipsis-h">  No</i>
+                    }
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details","Orders", new { id=item.Order_ID })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+
+<script type="text/javascript">
+    $('#my_list').dataTable(
+          {
+              dom: 'Bfrtip',
+              lengthMenu: [
+                  [ 10, 25, 50, -1 ],
+                  [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+              ],
+              buttons: [
+                  'pageLength', 'pdf', 'print'
+              ]
+          }
+        );
+    $('#my_list')
+       .removeClass('display')
+       .addClass('table table-striped table-hover');
+</script>

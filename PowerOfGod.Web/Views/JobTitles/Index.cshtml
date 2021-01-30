@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Salary.JobTitle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.departments.deptName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salaries.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.departments.deptName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salaries.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JobTitleId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JobTitleId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JobTitleId })
+        </td>
+    </tr>
+}
+
+</table>

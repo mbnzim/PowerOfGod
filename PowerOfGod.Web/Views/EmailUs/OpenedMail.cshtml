@@ -1,0 +1,121 @@
+﻿@model PagedList.IPagedList<PowerOfGod.Domain.Entity.UserContact.ContactUs>
+@using PagedList
+@using PagedList.Mvc
+@{
+    //ViewBag.Title = "unReadMail";
+    Layout = null;
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+@*<style>
+        #urlddl {
+            width: 18%;
+            padding: 8px;
+            text-align: justify;
+            float: right;
+        }
+
+            #urlddl a {
+                padding: 5px;
+            }
+    </style>*@
+<style>
+
+    fieldset {
+        width: 90%;
+        border-bottom: 1px solid #b7b7b7;
+        margin-bottom: 15px;
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    .tabs {
+        padding-top: 2%;
+        margin-left: 15%;
+    }
+
+        .tabs span {
+            display: inline-block;
+            padding-right: 4px;
+        }
+
+    strong span {
+        display: inline-block;
+        padding-right: 6px;
+    }
+</style>
+<div style="margin-bottom:2%;"></div>
+@*<div class="btn-group">
+        <a class="btn btn-default" href="" title="Bootstrap 3 themes generator">
+            <span class="icon_lightbulb_alt"></span>
+            View
+        </a>
+        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="" title="Bootstrap 3 themes generator"><span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="~/Tickets/Inbox">All Messages</a></li>
+            <li><a href="~/Tickets/unReadmail">Unread</a></li>
+           <li><a href="~/Monitor/Add">Deleted</a></li>
+            <li class="divider"></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cancel</a></li>
+        </ul>
+    </div>*@
+@foreach (var item in Model)
+{
+    if (item.read == false)
+    {
+        <div class="col-md-10">
+            <h3>
+                <strong>
+                    <span><img src="~/Content1/" width="30" height="25" /></span>
+                    @Html.ActionLink(item.subject, "InboxDetails", "EmailUs", new { id = item.contactId }, new { @class = "link" })
+                </strong>
+            </h3>
+        </div>
+        <fieldset>
+            <div class="col-md-10">
+                <p>
+                    @Html.DisplayFor(i => item.body)
+                    <div class="tabs">
+                        <span>Date Sent: @Html.DisplayFor(i => item.datesent)</span>
+                    </div>
+                </p>
+            </div>
+        </fieldset>
+    }
+    else
+    {
+        <div class="col-md-10">
+            <h3>
+                <strong>
+                    <span><img src="~/Content/openenvelope.png" width="30" height="25" /></span>
+                    @Html.ActionLink(item.subject, "InboxDetails", "EmailUs", new { id = item.contactId }, new { @class = "link" })
+                </strong>
+            </h3>
+        </div>
+        <fieldset>
+            <div class="col-md-10">
+                <p>
+                    @Html.DisplayFor(i => item.body)
+                    <div class="tabs">
+                        <span>Date Sent: @Html.DisplayFor(i => item.datesent)</span>
+                    </div>
+                </p>
+            </div>
+        </fieldset>
+    }
+}
+<br />
+<div style="text-align: center">
+    <p>
+        @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </p>
+    <p style="margin-top: -25px">
+        @Html.PagedListPager(Model, page => Url.Action("AllMessages", new { page }))
+    </p>
+</div>
+
+

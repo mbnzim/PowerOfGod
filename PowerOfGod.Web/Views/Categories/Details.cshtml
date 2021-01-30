@@ -1,0 +1,35 @@
+﻿@model PowerOfGod.Domain.Entity.Shopping.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.cartDepartment.Department_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cartDepartment.Department_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Category_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

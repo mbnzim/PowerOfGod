@@ -1,0 +1,26 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.TypeOfPastor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TypeOfPastor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pastortype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pastortype)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TypeOfPastorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

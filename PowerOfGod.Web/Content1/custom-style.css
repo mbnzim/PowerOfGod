@@ -1,0 +1,86 @@
+﻿/*-----------------STYLING CONTROLS----------------------*/
+
+input[type="text"], input[type="password"], textarea{
+    border: 2px solid #b1b1b1;
+    padding: 7px;
+    /*font-weight: bold;*/
+    font-size: medium;
+    color: #333131;
+    width: 35%;
+    /*text-align: center;*/
+    /*border-radius : 4px;*/
+}
+
+#hireDate, #dateAdded, #warranty, #emailAddress{
+    border: 2px solid #b1b1b1;
+    padding: 7px;
+    /*font-weight: bold;*/
+    font-size: medium;
+    color: #333131;
+    width: 35%;
+    /*text-align: center;
+    border-radius : 4px;*/
+}
+
+
+input[type="file"] {
+    border: 3px solid #b1b1b1;
+    padding: 5px;
+    /*font-weight: bold;*/
+    font-size: medium;
+    color: #373737;
+    width: 40.5%;
+    text-align: center;
+    border-radius : 4px;
+}
+
+select {
+    border: 2px solid #b1b1b1;
+    padding: 5px;
+    /*font-weight: bold;*/
+    font-size: medium;
+    color: #333131;
+    width: 35%;
+    /*text-align: center;
+    border-radius : 4px;*/
+}
+
+/*input[type="submit"],
+input[type="button"],
+button {
+
+    border: 3px solid #b1b1b1;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 15px;
+    margin: 15px 8px 0 95px;
+    width: 20%;
+    color: #ffffff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    border-radius : 4px;
+}*/
+
+    /*input[type="submit"]:hover,
+    input[type="button"]:hover,
+    button:hover {
+        color: #fff;
+        border: 3px solid #FFF;
+
+        text-decoration: none;
+        color: #ffffff;
+        background-color: #47a447;
+        border-color: #398439;
+    }*/
+
+#asset-nav ul li {
+        float: right;
+        text-decoration: none;
+        list-style: none;
+        padding-right: 6px;
+    }
+
+.space{
+    margin-top: 8%;
+}

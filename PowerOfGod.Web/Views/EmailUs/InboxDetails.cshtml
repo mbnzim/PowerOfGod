@@ -1,0 +1,128 @@
+﻿
+@model Tuple<PowerOfGod.Domain.Entity.UserContact.ContactUs, IEnumerable<PowerOfGod.Domain.Entity.UserContact.Screenshot>>
+
+@{
+    ViewBag.Title = "InboxDetails";
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+<link rel="stylesheet" href="~/Content1/lightbox.css" />
+<style>
+    fieldset {
+        padding-right: 20%;
+        width: 100%;
+        border: 2px 2px solid #000;
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    .tabs {
+        padding-top: 2%;
+    }
+
+        .tabs span {
+            display: inline-block;
+            padding-right: 4px;
+        }
+
+    strong span {
+        display: inline-block;
+        padding-right: 6px;
+    }
+
+    .linespace strong {
+        padding-right: 10px;
+    }
+
+    .col-md-10 {
+        font-size: 1.1em;
+    }
+
+    img#img-screen {
+        float: left;
+        margin-right: 4px;
+    }
+
+    #img-screen:hover {
+        width: 50%;
+        height: auto;
+    }
+</style>
+<div style="margin-bottom:10%;"></div>
+
+<h2>Inbox Details</h2>
+
+<div class="col-md-10">
+    <h3>
+        <strong>
+            <span>@Model.Item1.userName</span>
+        </strong>
+    </h3>
+</div>
+@if (Model.Item1.category != null)
+{
+
+    <fieldset>
+        <legend></legend>
+        <div class="col-md-10 linespace">
+            <h4><strong>@Model.Item1.subject - @Model.Item1.category</strong></h4>
+        </div>
+        <br /><br />
+
+
+        <div class="col-md-10">
+            <p>
+                @Model.Item1.body
+                <div class="tabs">
+                    @*<span>@Html.ActionLink("Create Asset Ticket", "Create", "EmailUs", null, new { @class = "btn btn-sm btn-default" })</span>
+                        <span>@Html.ActionLink("Create General Ticket", "General", "EmailUs", null, new { @class = "btn btn-sm btn-default" })</span>*@
+                    @*|| <span>@Html.ActionLink("Delete", "DeleteMail", "Tickets", new { @class = "btn btn-sm btn-default" })</span>*@
+                    Sent: @Model.Item1.datesent<
+                </div>
+            </p>
+
+            @foreach (var image in Model.Item2)
+            {
+                <div>
+                    <img class="img-thumbnail" id="img-screen" src="data:image/png;base64,@Convert.ToBase64String(image.ImageData)" width="100" height="100" />
+                </div>
+            }
+
+        </div>
+    </fieldset>
+}
+else
+{
+    <fieldset>
+        <legend></legend>
+        <div class="col-md-10 linespace">
+            <h4><strong>@Model.Item1.subject </strong></h4>
+            <hr />
+        </div>
+        <br /><br />
+
+
+        <div class="col-md-10">
+            <p>
+                
+                @Model.Item1.body<br/><br />
+                @*<div class="tabs">*@
+                    
+                    <div style="font-size:12px">Sent: @Model.Item1.datesent<div/>
+                @*</div>*@
+            </p>
+
+            @foreach (var image in Model.Item2)
+            {
+                <div>
+                    <img class="img-thumbnail" id="img-screen" src="data:image/png;base64,@Convert.ToBase64String(image.ImageData)" width="100" height="100" />
+                </div>
+            }
+
+        </div>
+    </fieldset>
+}
+<script src="~/Content/customscripts/lightbox.js"></script>
+
+

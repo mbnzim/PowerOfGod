@@ -1,0 +1,93 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Transactions.Transactions>
+
+
+@{
+    /**/
+
+    ViewBag.Title = "FinanceView";
+    Layout = "~/Views/Shared/_LayoutLess.cshtml";
+}
+
+
+
+<br /><br /><br /><br /><br /><br />
+<table class="table table-hover table-condensed" id="my_list">
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TransactionCode.transTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TransactionCode.transTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.date)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.transId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.transId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.transId })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<script type="text/javascript">
+
+    $('#my_list').dataTable(
+        {
+
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                    /*'pageLength',*/ 'pdf', 'print'
+            ]
+        }
+    );
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-condensed table-hover');
+
+</script>
+
+
+
+@*</body>
+    </html>*@
+
+
+
+
+
+
+

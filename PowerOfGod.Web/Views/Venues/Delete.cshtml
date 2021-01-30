@@ -1,0 +1,72 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.Venue
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Venue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TypeOFVenue.VenueType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOFVenue.VenueType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image_Url)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image_Url)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Capacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Capacity)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

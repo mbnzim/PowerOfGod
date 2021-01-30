@@ -1,0 +1,60 @@
+﻿
+
+@if (User.IsInRole("SupperAdmin"))
+{
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+else if (User.IsInRole("Financial-Manager"))
+{
+    Layout = "~/Views/Shared/_FinancialManager.cshtml";
+}
+<div style="margin-bottom:10%;"></div>
+
+
+<form action="/Dashboard/Dashboard" method="post">
+    <input name="__RequestVerificationToken" value="E7mjhsMJ0yGGm-w0lOe2YRqeItCXsai6fg2dcN_ZYsAZyNfRejKiUjFMoePgiNq01ayPayA7pzxrsQU-1Fn8XrRG2CZ62lihbFl2lROI3TM1" type="hidden">    <div class="form-horizontal">
+
+        <img src="~/Image2/log5.png" alt="logo" style="width:255px;height:118px;">
+
+   
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href="#">Dashboard</a></li>
+        </ol>
+        <hr>
+        <div style="margin-bottom:4%;"></div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="info-box brown-bg">
+                    <i class="icon_profile"></i>
+                    <a href="/Employees/Index"><div class="count">@ViewBag.getEmployee</div></a>
+                    <div class="title">Employees</div>
+                </div><!--/.info-box-->
+            </div><!--/.col-->
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="info-box dark-bg">
+                    <i class="icon_profile"></i>
+                    <a href="/Members/Index"><div class="count">@ViewBag.getMembers</div></a>
+                    <div class="title">Members</div>
+                </div><!--/.info-box-->
+            </div><!--/.col-->
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="info-box green-bg">
+                    <i class="icon_piechart"></i>
+                    <a href="/Transactions/Report"><div class="count">Finance</div></a>
+                    <div class="title">Report</div>
+                </div><!--/.info-box-->
+            </div><!--/.col-->
+        </div><!--/.row-->
+
+        <div class="row">
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+</form>
+
+

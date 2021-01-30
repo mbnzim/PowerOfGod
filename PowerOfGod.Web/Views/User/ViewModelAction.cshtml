@@ -1,0 +1,103 @@
+﻿@model IEnumerable<PowerOfGod.ViewModel.EmployeeViewModel.EmployeeViewModel>
+@*@model IEnumerable<PowerOfGod.Domain.Entity.Members.Members>*@
+
+
+@{
+    ViewBag.Title = "EmployeeViewModel";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<head>
+    <style>
+        .page1 {
+            border: 2px solid gray;
+            margin-top: 10px;
+        }
+    </style>
+
+    <style>
+        .page2 {
+            background-color: #1a2732;
+            height: 5%;
+        }
+
+        .center {
+            margin: auto;
+            color: white;
+            padding: 10px;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+            font-style: normal;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<div class="page2">
+    <div style="margin-bottom:8%;"></div>
+
+    <div class="center">
+        <h3 class="page-header">
+            <i class="icon_profile" style="color:white"></i>
+            My Profile
+
+        </h3>
+    </div>
+</div>
+<body>
+    <div class="page1">
+        @foreach (var item in Model)
+        {
+        <table>
+            <tr>
+                <td>
+                    <a href=""><img src="data:image/png;base64,@Convert.ToBase64String(item.Picture, 0, item.Picture.Length)" style="width: 150px; height: 150px" alt="" /></a>
+                </td>
+                <td>
+                    <h3><b><i>Welcome back @Html.DisplayFor(modelItem => item.fullname) we are glad to have you here!!</i></b></h3>
+                </td>
+            </tr>
+        </table>
+
+            //===========================Profile=====================
+            <table>
+                <tr>
+                    <td>@Html.DisplayName("Full Name")</td>
+                    <td>@Html.DisplayFor(modelItem => item.fullname)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayName("Email Address")</td>
+                    <td>@Html.DisplayFor(modelItem => item.email)</td>
+
+                </tr>
+                <tr>
+                    <td> @Html.DisplayName("Position")</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserRole)</td>
+
+                </tr>
+                <tr>
+                    <td> @Html.DisplayName("Department") </td>
+                    <td>@Html.DisplayFor(modelItem => item.deptName)</td>
+
+                </tr>
+                <tr>
+                    <td>@Html.DisplayName("Contract Type ")</td>
+                    <td>@Html.DisplayFor(modelItem => item.typeName)</td>
+
+                </tr>
+            </table>
+            //===========================//Profile=====================
+        }
+    </div>
+</body>

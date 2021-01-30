@@ -1,0 +1,131 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Shopping.Item>
+@{
+    ViewBag.Title = "Shopping";
+    if (ViewBag.Department != null)
+    {
+        ViewBag.Title = ViewBag.Department.ToString();
+        Layout = "~/Views/Shared/_CartLayout.cshtml";
+    }
+}
+<br />
+
+<h2>All Products</h2>
+<hr />
+<br />
+@*<h2 class="title text-center"> @ViewBag.Title </h2>*@
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-3">
+            <div class="product-image-wrapper">
+                <div class="single-products">
+                    <div class="productinfo text-center">
+                        @if (item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(inArray: item.Picture);
+                            var imgSrc = string.Format(format: "data:image/gif;base64,{0}", arg0: base64);
+                            <img src="@imgSrc" width="100" height="149" />
+                        }
+                        <h3>@Html.DisplayFor(expression: modelItem => item.Price)</h3>
+                        <p>
+                            <a href="@Url.Action("Details","Items", new { id=item.ItemCode })" rel="tooltip" title="View" style="color:black;">
+                                <b>
+                                    @Html.DisplayFor(expression: modelItem => item.Name)
+                                </b>
+                            </a>
+                        </p>
+                        @if (item.QuantityInStock == 0)
+                        {
+                            <a href="@Url.Action(actionName: "add_to_cart", controllerName: "Shopping", routeValues: new {id = item.ItemCode})" class="btn disabled btn-default"><i class="fa fa-shopping-cart disabled"></i> Out of stock</a>
+                            @*<a href="/Details/Items/@item.ItemCode"><i class="glyphicon glyphicon-zoom-in" aria-hidden="true"></i></a>*@
+                            <a href="@Url.Action("Details","Items", new { id=item.ItemCode })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action(actionName: "add_to_cart", controllerName: "Shopping", routeValues: new {id = item.ItemCode})" class="btn btn-default"><i class="fa fa-shopping-cart"></i> Add to cart</a>
+                            <a href="@Url.Action("Details","Items", new { id=item.ItemCode })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                        }
+                    </div>
+                    @*<div class="col-sm-8 col-md-5 col-sm-offset-2 col-md-offset-0">
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="nl-send-btn">subscribe</button>
+                </form>
+            </div>*@
+        </div>
+    </div>
+            <script type="text/javascript">
+                var $zoho = $zoho || {}; $zoho.salesiq = $zoho.salesiq ||
+                    { widgetcode: "4133bf52dc5186c72b4359a9ed99f5943ab97e02475cbf6f18bf8d22110d2cbd3df36f2dd283b7efe1698e5454b4a3fa", values: {}, ready: function () { } };
+                var d = document; s = d.createElement("script"); s.type = "text/javascript"; s.id = "zsiqscript"; s.defer = true;
+                s.src = "https://salesiq.zoho.com/widget"; t = d.getElementsByTagName("script")[0]; t.parentNode.insertBefore(s, t); d.write("<div id='zsiqwidget'></div>");
+            </script>
+
+                    @*<!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        Modal body..
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+
+
+
+
+
+                    @*<div class="product-overlay">
+            <div class="overlay-content">
+            <h2>@Html.DisplayFor(expression: modelItem => item.Price)</h2>
+            <p><a href="@Url.Action("Details","Items", new { id=item.ItemCode })" rel="tooltip" title="View" style="color:black;">
+                <b>
+                      @Html.DisplayFor(expression: modelItem => item.Name)
+                </b>
+            </a></p>
+           @if (item.QuantityInStock == 0)
+        {
+            <a href="@Url.Action(actionName: "add_to_cart", controllerName: "Shopping", routeValues: new {id = item.ItemCode})" class="btn disabled btn-default"><i class="fa fa-cart-plus disabled"></i> Out of stock</a>
+        }
+        else
+        {
+            <a href="@Url.Action(actionName: "add_to_cart", controllerName: "Shopping", routeValues: new {id = item.ItemCode})" class="btn btn-default"><i class="fa fa-cart-plus"></i> Add to cart</a>
+        }
+            </div>
+        </div>*@
+              
+                @*<div class="choose">
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                        </ul>
+                    </div>*@
+            </div>
+       
+    }
+</div>
+
+@if (ViewBag.Err != null)
+{
+
+}

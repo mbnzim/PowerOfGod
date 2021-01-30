@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+
+        fieldset {
+            width: 90%;
+            border-bottom: 1px solid #b7b7b7;
+            margin-bottom: 15px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .link {
+            text-decoration: none;
+        }
+
+        .tabs {
+            padding-top: 2%;
+            margin-left: 15%;
+        }
+
+            .tabs span {
+                display: inline-block;
+                padding-right: 4px;
+            }
+
+        strong span {
+            display: inline-block;
+            padding-right: 6px;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>The Power Of God Assembles</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <link href="~/Content1/AdminLayout/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/widgets.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/style.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/style-responsive.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/xcharts.min.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" />
+    <link href="~/Content1/AdminLayout/css/owl.carousel.css" rel="stylesheet" />
+
+</head>
+<body>
+    <header class="header dark-bg">
+        <!----=============================================-->
+
+        <div class="top-nav notification-row">
+            <ul class="nav pull-right top-menu">
+                <li id="mail_notificatoin_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-envelope-l"></i>
+                        <span class="badge bg-important">@Html.Partial("_Inbox")</span><!--returns the count number of inbox messages-->
+                    </a>
+                    <ul class="dropdown-menu extended inbox">
+                        <div class="notify-arrow notify-arrow-blue"></div>
+                        <li>
+                            <p class="red">You have @Html.Partial("_Inbox") New messages</p>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("AllMessages", "EmailUs")">
+                                <!--Redirect you to the tickets index-->
+                                <i class="fa fa-warning text-red"></i> @Html.Partial("_Inbox") Notification(s) Found
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--=====================Notification=====================-->
+                <li id="alert_notificatoin_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-bell-l"></i>
+                        <span class="badge bg-important"> @Html.Partial("_LeaveRequestCounter")</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-blue"></div>
+                        <li>
+                            <p class="blue">You have (@Html.Partial("_LeaveRequestCounter"))Total leave requests</p>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("index", "EmployeeLeavels")">
+                                <span class="label label-danger"><i class="icon_book_alt"></i></span>
+                                @*@Html.Partial("_DueTicketsCounter")*@ View all Leave requsts
+                                @*<span class="small italic pull-right">High Priority</span>*@
+                            </a>
+                        </li>
+                        @*<li>
+                                <a href="@Url.Action("Index", "Tickets")">
+                                    <span class="label label-warning"><i class="icon_clock_alt"></i></span>
+                                    @Html.Partial("_OverDue") Over Due Tickets
+                                    <span class="small italic pull-right">High Priority</span>
+                                </a>
+                            </li>*@
+                    </ul>
+                </li>
+                <!--=====================/Notification=====================-->
+            </ul>
+        </div>
+        <!----=============================================-->
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Developed by Semicolon</p>
+            </footer>
+        </div>
+        <script src="~/Content1/AdminLayout/js/jquery.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery-ui-1.10.4.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery-1.8.3.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/bootstrap.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.scrollTo.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.nicescroll.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.sparkline.js"></script>
+        <script src="~/Content1/AdminLayout/js/owl.carousel.js"></script>
+        <script src="~/Content1/AdminLayout/assets/jquery-knob/js/jquery.knob.js"></script>
+        <script src="~/Content1/AdminLayout/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.slimscroll.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/charts.js"></script>
+        <script src="~/Content1/AdminLayout/js/sparklines.js"></script>
+        <script src="~/Content1/AdminLayout/js/morris.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/gdp-data.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.placeholder.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.autosize.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/xcharts.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/easy-pie-chart.js"></script>
+        <script src="~/Content1/AdminLayout/js/sparkline-chart.js"></script>
+        <script src="~/Content1/AdminLayout/js/scripts.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.customSelect.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/jquery.rateit.min.js"></script>
+        <script src="~/Content1/AdminLayout/js/calendar-custom.js"></script>
+        <script src="~/Content1/AdminLayout/js/fullcalendar.min.js"></script>
+        <script src="~/Content1/AdminLayout/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+        <script src="~/Content1/AdminLayout/assets/chart-master/Chart.js"></script>
+
+        <script>
+//knob
+        $(function () {
+            $(".knob").knob({
+                'draw': function () {
+                    $(this.i).val(this.cv + '%')
+                }
+            })
+        });
+
+        //carousel
+        $(document).ready(function () {
+            $("#owl-slider").owlCarousel({
+                navigation: true,
+                slideSpeed: 300,
+                paginationSpeed: 400,
+                singleItem: true
+
+            });
+        });
+
+        //custom select box
+
+        $(function () {
+            $('select.styled').customSelect();
+        });
+
+        /* ---------- Map ---------- */
+        $(function () {
+            $('#map').vectorMap({
+                map: 'world_mill_en',
+                series: {
+                    regions: [{
+                        values: gdpData,
+                        scale: ['#000', '#000'],
+                        normalizeFunction: 'polynomial'
+                    }]
+                },
+                backgroundColor: '#eef3f7',
+                onLabelShow: function (e, el, code) {
+                    el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+                }
+            });
+        });</script>
+</body>
+</html>
+
+

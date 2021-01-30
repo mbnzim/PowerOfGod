@@ -1,0 +1,90 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.VenueBooking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VenueBooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue.Venue_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue.Venue_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VenueBookingDescription.booking_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VenueBookingDescription.booking_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vstart_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vstart_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Venue_Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Venue_Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReserveVenue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReserveVenue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberInUse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberInUse)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VenueBookingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

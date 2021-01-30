@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>PowerOfGOD Event Schedule </title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+    <main>
+        <section v-for="(day, index) in schedule">
+            <header>
+                Day {{index+1}} &mdash; {{day.date | date}}
+            </header>
+            <ul>
+                <li v-for="slot in day.agenda" v-bind:class="{ current: checkTime(slot.range[0], slot.range[1]) }">
+                    <h3><b>{{slot.display.h}}</b>{{slot.display.m}}{{slot.display.a}}</h3>
+                    <div v-html="slot.desc"></div>
+                    <div><small v-html="slot.location"></small></div>
+                </li>
+                <li class="after-hours">
+                    <div>
+                        <b>Day {{index+1}}</b>
+                        <br />Before / After Hours
+                        <br /><small><small>play with the time traveler</small></small>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+    <aside>
+        <div class="clock">
+            <h3>{{time}}</h3>
+        </div>
+        <div class="control" v-bind:class="{ show: showTimeTraveller }">
+            <header v-on:click="showTimeTraveller = !showTimeTraveller">
+                <div><b>Time Traveler</b></div>
+                <button><span>_</span></button>
+            </header>
+            <div>
+                <p><input type="range" min="0" max="23.9" step="0.1" v-model="now" id="traveler" /></p>
+                <p>To-do: Multi-day Traversing</p>
+            </div>
+        </div>
+        <h1>The<br />Youth- Conference<br />Event</h1>
+        <svg class="logo" viewBox="0 0 300 300">
+            <path d="M131.571064,109.070607 L131.571064,137.53707 C131.571064,140.469009 133.943677,142.845816 136.870444,142.845816 L161.983721,142.845816 C164.910487,142.845816 167.2831,140.469009 167.2831,137.53707 L167.2831,109.070607 L190,109.070607 L190,126 L196.961552,130.558804 L278.349427,83.4864366 C280.86863,82.0294031 281.478329,77.5186344 280,75 C253,29 204.440315,0 149.827908,0 C67.0802395,0 0,67.1988074 0,150.092737 C0,177.306865 7.24510935,203.471773 20.7773829,226.392892 C22.2562399,228.897796 25.4725454,229.743032 27.9884118,228.287929 L107.191992,182.478893 L110,178 L110,109.070607 L131.571064,109.070607 Z M199,117 L199,104 C199,101.06806 196.926766,99 194,99 L162,99 C159.073234,99 157,101.06806 157,104 L157,133 L142,133 L142,104 C142,101.06806 139.926766,99 137,99 L105,99 C102.073234,99 100,101.06806 100,104 L100,174.816378 L27.3159654,216.416827 C16.4078317,196.243969 10.5987588,173.599599 10.5987588,150.092737 C10.5987588,73.0626867 72.9337723,10.6174927 149.827908,10.6174927 C198.794546,10.6174927 243.297302,36.1517842 268.414966,76.9722135 L199,117 Z"></path>
+            <path d="M151.206898,180.646668 L151.206898,209.646668 C151.206898,212.578608 153.280132,214.646668 156.206898,214.646668 L181.206898,214.646668 C184.133665,214.646668 186.206898,212.578608 186.206898,209.646668 L186.206898,180.646668 L209.206898,180.646668 L209.206898,197.646668 L216.168451,202.205473 L297.556325,155.133105 C300.075529,153.676072 300.685229,149.165306 299.206898,146.646668 C272.206898,100.646668 223.647213,71.6466684 169.034807,71.6466684 C86.287138,71.6466684 19.2068985,138.845476 19.2068985,221.739406 C19.2068985,248.953533 26.4520078,275.118442 39.9842812,298.03956 C41.4631384,300.544465 47.1953102,299.934597 47.1953102,299.934597 L126.398891,254.125562 L129.206898,249.646668 L129.206898,180.646668 L151.206898,180.646668 Z M219.206898,188.646668 L219.206898,175.646668 C219.206898,172.714729 216.133665,170.646668 213.206898,170.646668 L181.206898,170.646668 C178.280132,170.646668 176.206898,172.714729 176.206898,175.646668 L176.206898,204.646668 L161.206898,204.646668 L161.206898,175.646668 C161.206898,172.714729 159.133665,170.646668 156.206898,170.646668 L124.206898,170.646668 C121.280132,170.646668 119.206898,172.714729 119.206898,175.646668 L119.206898,245.646668 L46.5228638,288.063496 C35.6147302,267.890637 29.8056573,245.246268 29.8056573,221.739406 C29.8056573,144.709355 92.1406709,82.2641611 169.034807,82.2641611 C218.001445,82.2641611 262.504201,107.798452 287.621865,148.618882 L219.206898,188.646668 Z" transform="translate(159.603449, 185.823334) rotate(180.000000) translate(-159.603449, -185.823334)"></path>
+        </svg>
+    </aside>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+    <script type="text/javascript">
+        var $zoho = $zoho || {}; $zoho.salesiq = $zoho.salesiq ||
+            { widgetcode: "bcb1187a4f35d36d7095dbe40498e5b83c790df816cb311283b406eb251ab6ca", values: {}, ready: function () { } };
+        var d = document; s = d.createElement("script"); s.type = "text/javascript"; s.id = "zsiqscript"; s.defer = true;
+        s.src = "https://salesiq.zoho.com/widget"; t = d.getElementsByTagName("script")[0]; t.parentNode.insertBefore(s, t); d.write("<div id='zsiqwidget'></div>");
+    </script>
+</body>
+
+</html>

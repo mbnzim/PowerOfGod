@@ -1,0 +1,74 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.Pastor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pastor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.typeOfPastor.Pastortype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeOfPastor.Pastortype)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PfirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PfirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cellnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cellnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PastorID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

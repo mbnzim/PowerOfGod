@@ -1,0 +1,97 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Booking.PastorBooking>
+@if (User.IsInRole("SupperAdmin"))
+{
+    Layout = "~/Views/Shared/_supadmin.cshtml";
+}
+else if (User.IsInRole("Administrator"))
+{
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+<br /><br /><br />
+<h2>Booked Pastors</h2>
+<br />
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pastor.PfirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PastorBookingReason.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookedBy)
+        </th>
+        <th>
+                @Html.DisplayNameFor(model => model.BookingAmount)
+            </th>
+        <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.NumberInUse)
+            </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pastor.PfirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PastorBookingReason.Reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Start_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookedBy)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.BookingAmount)
+                </td>
+
+            <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default" href="" title="Bootstrap 3 themes generator">
+                            <span class="icon_lightbulb_alt"></span>
+                            Options
+                        </a>
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="" title="Bootstrap 3 themes generator"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href=""> @Html.ActionLink("Booking Approval", "ApproveBooking", new { id = item.PastorBookingID }) </a></li>
+                            <li><a href="">@Html.ActionLink("Details", "Details", new { id = item.PastorBookingID }) </a></li>
+                            <li><a href=""> @Html.ActionLink("Delete", "Delete", new { id = item.PastorBookingID })</a></li>
+
+                            <li class="divider"></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Cancel</a></li>
+                        </ul>
+                    </div>
+                </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,106 @@
+﻿@model List<PowerOfGod.Domain.Entity.Shopping.Cart_Item>
+@{
+    ViewBag.Title = "Shopping Cart";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.Raw(TempData["Message"])
+        <table class="table">
+            <tr style="background: #f3f3f3;">
+                <th hidden="hidden"></th>
+                <th>Picture</th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Availability
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Price
+                </th>
+                <th></th>
+            </tr>
+            @for (int item = 0; item < Model.Count(); item++)
+            {
+                <tr>
+                    <td hidden="hidden">
+                        @Html.EditorFor(modelItem => Model[item].cart_item_id)
+                    </td>
+                    <td>
+                        @if (Model[item].Item.Picture != null)
+                        {
+                            var base64 = Convert.ToBase64String(Model[item].Item.Picture);
+                            var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                            <img src="@imgSrc" width="60" height="70" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[item].Item.Name)
+                    </td>
+                    <th>
+                        @Model[item].Item.QuantityInStock in stock
+                    </th>
+                    <td>
+                        @Html.EditorFor(modelItem => Model[item].quantity, new { htmlAttributes = new { @class = "form-control", @style = "width:100px" } })
+                    </td>
+                    <th>
+                        @Model[item].price.ToString("R 0.00")
+                    </th>
+                    <td>
+                        <a href="@Url.Action("remove_from_cart", "Shopping", new {id = Model[item].cart_item_id})" class="btn btn-default"><i class="fa fa-times"></i> Remove</a>
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td hidden="hidden"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    Total:<b> @ViewBag.TotalQTY </b>
+                    @if (Model.Count == 0)
+                    {
+                        <input type="submit" value="Update" class="btn btn-default disabled" />
+                    }
+                    else
+                    {
+                        <input type="submit" value="Update" class="btn btn-default" />
+                    }
+                </td>
+                <th>
+                    @ViewBag.Total.ToString("R 0.00")
+                </th>
+                <td></td>
+            </tr>
+            <tr>
+                <td hidden="hidden"></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="@Url.Action("Index", "Shopping")" class="btn btn-default"><i class="fa fa-arrow-left"></i> Back to shopping</a>
+                </td>
+
+                <th>
+                    <a href="@Url.Action("Checkout", "Shopping")" class="btn btn-success"><i class="fa fa-lock"></i> Checkout</a>
+                </th>
+                <td></td>
+            </tr>
+        </table>
+
+    }
+</div>
+@if (ViewBag.Message !=null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            this.alert("@ViewBag.Message");
+        };
+    </script>
+}

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Transactions.Church_Income>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLess.cshtml";
+}
+<br /><br /><br /><br /><br />
+<h2>Church Income List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TypeOfIncomes.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TypeOfIncomes.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ExpensesId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ExpensesId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ExpensesId })
+        </td>
+    </tr>
+}
+
+</table>

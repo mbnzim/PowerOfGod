@@ -1,0 +1,32 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.PastorBooking
+
+@{
+    ViewBag.Title = "PayFast";
+}
+
+<h2>PayFast</h2>*@*@*@
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<div class="w3ls_banner_section">
+    <div class="container">
+        @using (Html.BeginForm("PayFast", "payment", FormMethod.Get))
+        {
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <p>
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-success">Make a Donation</button>
+                            </div>
+                            @Html.TextBox("Amount", null, new { @class = "form-control", @required = "required", @type = "number", @placeholder = "Enter amount.." })
+                        </div>
+
+
+                    </p>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+
+        }
+

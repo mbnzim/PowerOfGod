@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_member.cshtml";
+}
+<h2>Make Booking</h2>
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <hr />
+        <p><h4><b>Book A Pastor</b></h4></p>
+        <hr />
+        <li>@Html.ActionLink("Make Pastor Booking", "Create", "PastorBookings")</li>
+        <li>@Html.ActionLink("View Church Pastors", "Index", "Pastors")</li>
+        <li>@Html.ActionLink("My Pastor Booking", "BookingIndexUser", "PastorBookings")</li>
+        <hr />
+        <p><h4><b>Book A Venue</b></h4></p>
+        <hr />
+        <li>@Html.ActionLink("Make  Booking", "Create", "VenueBookings")</li>
+        <li>@Html.ActionLink("View Church Venues", "Index", "Venues")</li>
+        <li>@Html.ActionLink("My Venue Booking", "BookingIndexVenue", "VenueBookings")</li>
+        <hr />
+
+    </div>
+</body>
+</html>

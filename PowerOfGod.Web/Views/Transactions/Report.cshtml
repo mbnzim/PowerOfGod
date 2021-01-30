@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layoutstyle.cshtml";
+}
+<script src="~/Scripts/chart/exporting.js"></script>
+<script src="~/Scripts/chart/highcharts.js"></script>
+
+
+<div class="jumbotron">
+    <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</div>
+<div class="jumbotron">
+    <div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+</div>
+
+<script>
+
+
+    $(document).ready(function () {
+        $.getJSON("/Transactions/GetData", function (data) {
+
+
+
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                    // type: 'line',
+                    //type: 'bar'
+
+
+
+                },
+                title: {
+                    text: 'Transaction Report'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Transactions',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Expense',
+                        y: data.Expense
+                    }, {
+                        name: 'Income',
+                        y: data.Income
+                    }]
+                    //}, {
+                    //    name: 'Other',
+                    //    y: data.Other
+                    //}]
+                }]
+            });
+        });
+    });
+    $(document).ready(function () {
+        $.getJSON("/Transactions/GetData", function (data) {
+
+
+
+            Highcharts.chart('container1', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    //type: 'pie'
+                    // type: 'line',
+                    type: 'bar'
+
+
+
+                },
+                title: {
+                    text: 'Transaction Report'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Transactions',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Expense',
+                        y: data.Expense
+                    }, {
+                        name: 'Income',
+                        y: data.Income
+                    }]
+                    //}, {
+                    //    name: 'Other',
+                    //    y: data.Other
+                    //}]
+                }]
+            });
+        });
+    });
+
+
+</script>
+

@@ -1,0 +1,89 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Shopping.Item>
+@{
+    ViewBag.Title = "List of Items";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+<a class="btn btn-default" href="@Url.Action("Create","Items")">
+    <i class="fa fa-plus"></i>
+    Create New
+</a>
+<table class="table table-hover table-striped" id="my_list">
+    <thead>
+        <tr class="table-header-row">
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Category
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a><img src="data:image/png;base64,@Convert.ToBase64String(item.Picture, 0, item.Picture.Length)" style="width: 40px; height: 40px" alt="" /></a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantityInStock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details","Items", new { id=item.ItemCode })" rel="tooltip" title="View" class="btn btn-info btn-simple btn-xs"><i class="fa fa-eye"></i></a>
+                    <a href="@Url.Action("Edit","Items", new { id=item.ItemCode })" rel="tooltip" title="Edit" class="btn btn-success btn-simple btn-xs"><i class="fa fa-edit"></i></a>
+                    <a href="@Url.Action("Delete", "Items", new { id = item.ItemCode })" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs"><i class="fa fa-times"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $('#my_list').dataTable(
+        {
+            dom: 'Bfrtip',
+            lengthMenu: [
+                [10, 25, 50, -1],
+                ['10 rows', '25 rows', '50 rows', 'Show all']
+            ],
+            buttons: [
+                'pageLength', 'pdf', 'print'
+            ]
+        }
+    );
+    $('#my_list')
+        .removeClass('display')
+        .addClass('table table-striped table-hover');
+</script>

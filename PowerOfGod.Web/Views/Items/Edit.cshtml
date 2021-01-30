@@ -1,0 +1,110 @@
+﻿@model PowerOfGod.Domain.Entity.Shopping.Item
+@{
+    ViewBag.Title = "Edit Item Details";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Items", routeValues: null, method: FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <table>
+                <tr>
+                    <th width="80px">@Html.LabelFor(model => model.ItemCode)</th>
+                    <td>
+                        @Html.EditorFor(model => model.ItemCode, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.ItemCode, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th width="80px">@Html.LabelFor(model => model.Name)</th>
+                    <td>
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.Category_ID)</th>
+                    <td>
+                        @Html.DropDownList("Category_ID", null, "--- Please Select ---", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Category_ID, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.Description)</th>
+                    <td>
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Description" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th width="80px">@Html.LabelFor(model => model.QuantityInStock)</th>
+                    <td>
+                        @Html.EditorFor(model => model.QuantityInStock, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.QuantityInStock, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.Price)</th>
+                    <td width="180px">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <b>R</b>
+                            </div>
+                            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @placeholder = "0.00" } })
+                            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.LabelFor(model => model.Picture)</th>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-file-picture-o"></i>
+                            </div>
+                            <input type="file" name="img_upload" accept=".jpeg,.jpg,.png" onchange="readURL(this);" class="form-control" required="required" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a class="btn btn-default" href="@Url.Action("Index","Items")">
+                            <i class="fa fa-angle-left"></i>
+                            Back to List
+                        </a>
+                    </td>
+                    <td class="pull-right">
+                        <input type="submit" value="Save Changes" class="btn btn-default" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <img id="image_preview" src="#" alt="" @*style="border: 5px solid #ccc"*@ />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    //image preview
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_preview')
+                    .attr('src', e.target.result)
+                    .width(300)
+                    .height(300);
+
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

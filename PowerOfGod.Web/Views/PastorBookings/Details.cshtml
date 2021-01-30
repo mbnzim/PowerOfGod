@@ -1,0 +1,82 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.PastorBooking
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PastorBooking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pastor.PfirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pastor.PfirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PastorBookingReason.Reason)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PastorBookingReason.Reason)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reserved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reserved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberInUse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberInUse)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PastorBookingID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

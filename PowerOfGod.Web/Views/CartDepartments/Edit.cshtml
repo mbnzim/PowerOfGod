@@ -1,0 +1,54 @@
+﻿@model PowerOfGod.Domain.Entity.Shopping.CartDepartment
+
+@{
+    ViewBag.Title = "Edit Department";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="row">
+        <table class="table">
+            <tr>
+                <th>@Html.LabelFor(model => model.Department_ID)</th>
+                <td>
+                    @Html.EditorFor(model => model.Department_ID, new { htmlAttributes = new { @class = "form-control", @readonly= "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Department_ID, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Department_Name)</th>
+                <td>
+                    @Html.EditorFor(model => model.Department_Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Department_Name, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Description)</th>
+                <td>
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a class="btn btn-default" href="@Url.Action("Index","Departments")">
+                        <i class="fa fa-angle-left"></i>
+                        Back to List
+                    </a>
+                </td>
+                <td>
+                    <input type="submit" value="Save Changes" class="btn btn-default" />
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

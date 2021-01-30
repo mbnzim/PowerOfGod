@@ -1,0 +1,67 @@
+﻿@model PowerOfGod.Domain.Entity.Shopping.Item
+@{
+    ViewBag.Title = "Item Details";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-4">
+        <img src="data:image/png;base64,@Convert.ToBase64String(Model.Picture, 0, Model.Picture.Length)" style="width: 250px; height: 250px" alt="" />
+    </div>
+    <div class="col-md-6 pull-right">
+        <table class="table">
+            @*<tr>
+                <th>@Html.LabelFor(model => Model.ItemCode)</th>
+                <td>
+                    @Html.DisplayFor(model => model.ItemCode)
+                </td>
+            </tr>*@
+            <tr>
+                <th>@Html.LabelFor(model => Model.Name)</th>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>
+                    @Html.DisplayFor(model => model.Category.Name)
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => Model.Description)</th>
+                <td>
+                    @Html.DisplayFor(model => model.Description)
+                </td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => Model.QuantityInStock)</th>
+                <th>
+                    @Html.DisplayFor(model => model.QuantityInStock)
+                </th>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => Model.Price)</th>
+                <th>
+                    @Html.DisplayFor(model => model.Price)
+                </th>
+            </tr>
+        
+            @*<tr>
+                <td>
+                    <a class="btn btn-default" href="@Url.Action("Index","Items")">
+                        <i class="fa fa-angle-left"></i>
+                        Back to List
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-default" href="@Url.Action("Edit","Items", new { id = Model.ItemCode })">
+                        <i class="fa fa-edit"></i>
+                        Edit
+                    </a>
+                </td>
+            </tr>*@
+        </table>
+    </div>
+</div>

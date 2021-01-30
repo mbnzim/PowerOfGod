@@ -1,0 +1,99 @@
+﻿@model PagedList.IPagedList<PowerOfGod.ViewModel.EmployeeViewModel.LeaveViewModel>
+@using PagedList.Mvc
+@using PagedList
+@{
+    ViewBag.Title = "LeaveViewModel";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<div style="margin-bottom:10%;"></div>
+
+<h3 class="page-header"><i class="fa fa-list-alt"></i>My Leaves</h3>
+<ol class="breadcrumb">
+    <li><i class="fa fa-home"></i><a href="~/User/ViewModelAction">My Profile</a></li>
+    <li><i class="fa fa-desktop"></i>Leaves</li>
+    <li><i class="fa fa-list-alt"></i>My Leaves</li>
+</ol>
+
+<table class="table table-striped table-condensed table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayName("Created by")
+        </th>
+        <th>
+            @Html.DisplayName("Update by")
+        </th>
+        <th>
+            @Html.DisplayName("Leave Type")
+        </th>
+        <th>
+            @Html.DisplayName("Reason")
+        </th>
+        <th>
+            @Html.DisplayName("Start Date")
+        </th>
+        <th>
+            @Html.DisplayName("End Date")
+        </th>
+        <th>
+            @Html.DisplayName("Number of days")
+        </th>
+        <th>
+            @Html.DisplayName("Status")
+        </th>
+
+        @*<th>
+                @Html.DisplayName("Email")
+            </th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.createdBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.updateBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.reason)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.startDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.endDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.numberOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>*@
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LeaveID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.LeaveID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LeaveID })
+                </td>*@
+        </tr>
+    }
+
+</table>
+
+<div style="text-align: center">
+    <p>
+        @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    </p>
+    <p style="margin-top: -25px">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </p>
+</div>
+

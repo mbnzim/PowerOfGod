@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Power Of God Online Store</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/tabstyle.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.3/pdfmake-0.1.18/dt-1.10.12/af-2.1.2/b-1.2.2/b-colvis-1.2.2/b-html5-1.2.2/b-print-1.2.2/fc-3.2.2/fh-3.1.2/kt-2.1.3/r-2.1.0/rr-1.1.2/sc-1.4.2/se-1.2.0/datatables.min.js"></script>
+    @*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />*@
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link rel="icon" href="~/favicon.ico" />
+
+    <style>
+        .log {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0px 16px;
+        }
+    </style>
+</head>
+<body>
+  
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <nav class="navbar navbar-default navbar-fixed-top wow fadeInDown">
+            <div class="container">
+                <div class="navbar-header">
+                   
+                    <div class="log"> <a href="@Url.Action("Index", "Home")"><img src="~/Image2/lo2.png" /> </a></div> 
+                   
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")" alt="">
+
+                    </a>
+                </div>
+                @{
+                    var department_Service = new PowerOfGod.Business.ShoppingLogic.Department_Service();
+                    var cart_Service = new PowerOfGod.Business.ShoppingLogic.Cart_Service();
+                    double total = 0;
+                }
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.MenuLink("Home", "Index", "Home", null, "fa fa-home", null)</li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-list"></span> Shop by Department <span class="caret"></span></a>
+                            <ul class="dropdown-menu mega scrollable-menu">
+                                <ul class="sub-menu">
+                                    <li><a href="@Url.Action("Index","Shopping",new { id = 0})">All Departments</a></li>
+                                    @foreach (var department in department_Service.allDepartments().OrderBy(x => x.Department_Name))
+                                    {
+                                        <li><a href="@Url.Action("Index","Shopping",new { id = department.Department_ID })">@department.Department_Name</a></li>
+                                    }
+                                </ul>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> @*<span class="fa fa-shopping-cart"></span>*@<img src="~/Image2/cart4.png" width="35" height="35"/><b>@Html.Action(actionName: "countCartItems", controllerName: "Shopping")</b><span class="caret"></span></a>
+                            <ul class="dropdown-menu mega">
+                                <ul class="sub-menu">
+                                    <table class="table">
+                                        <tr style="background: #f3f3f3;">
+                                            <th style="min-width:30px;">Item</th>
+                                            <th style="min-width:280px;">
+                                            </th>
+                                            <th style="text-align:center">
+                                                Quantity
+                                            </th>
+                                            <th style="text-align:center">
+                                                Sub-Total
+                                            </th>
+                                        </tr>
+                                        @if (cart_Service.get_Cart_Items().Count() == 0)
+                                        {
+                                            <tr>
+                                                <th colspan="4" style="text-align:center">Your cart is empty</th>
+                                            </tr>
+                                        }
+                                        @foreach (var item in cart_Service.get_Cart_Items().OrderBy(x => x.Item.Name))
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (item.Item.Picture != null)
+                                                    {
+                                                        var base64 = Convert.ToBase64String(item.Item.Picture);
+                                                        var imgSrc = string.Format("data:image/gif;base64,{0}", base64);
+                                                        <img src="@imgSrc" width="30" height="30" />
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("Details","Items", new { id=item.Item.ItemCode })">@item.Item.Name</a>
+                                                </td>
+                                                <td style="text-align:center">
+                                                    @item.quantity
+                                                </td>
+                                                <td style="text-align:center">
+                                                    @{
+                                                        var subtotal = item.quantity * item.Item.Price;
+                                                        total += subtotal;
+                                                    }
+                                                    @subtotal.ToString("C")
+                                                </td>
+                                            </tr>
+                                        }
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td style="text-align:center">
+                                                Total
+                                            </td>
+                                            <th style="text-align:center">
+                                                @total.ToString("C")
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td>
+                                                <a class="btn btn-default" href="@Url.Action("Index","Shopping")">
+                                                    <i class="fa fa-list"></i> Shop More
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-default" href="@Url.Action("ShoppingCart", "Shopping")">
+                                                    <i class="fa fa-shopping-cart"></i> View Cart
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @if (cart_Service.get_Cart_Items().Count() == 0)
+                                                {
+                                                    <a class="btn btn-default disabled" href="@Url.Action("Checkout","Shopping")">
+                                                        <i class="fa fa-lock"></i> Checkout
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="btn btn-default" href="@Url.Action("Checkout","Shopping")">
+                                                        <i class="fa fa-lock"></i> Checkout
+                                                    </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ul>
+                            </ul>
+                        </li>
+                        @using Microsoft.AspNet.Identity
+                        @if (Request.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                @{
+                                    PowerOfGod.Domain.Context.ApplicationDbContext db = new PowerOfGod.Domain.Context.ApplicationDbContext();
+                                }
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span> @db.Users.ToList().FirstOrDefault(x => x.UserName == @User.Identity.GetUserName()).fullName<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.MenuLink("Profile", "MemberViewModel", "Members", null, "fa fa-user", null)</li>
+                                    <li>@Html.MenuLink("Order History", "Order_History", "Orders", null, "fa fa-list", null)</li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-lock"></i> Sign out</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-user"></span> My Account <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    @Html.MenuLink("Create a new Account", "Register", "Account", null, "fa fa-pencil", null)
+                                    @Html.MenuLink("Sign in", "Login", "Account", null, "fa fa-lock", null)
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    }
+    <div class="container" style="margin-top:5px;margin-bottom:10px">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Power Of God Online Store</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

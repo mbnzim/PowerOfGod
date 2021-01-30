@@ -1,0 +1,34 @@
+﻿
+@using Microsoft.AspNet.Identity
+
+@{
+   
+    PowerOfGod.Domain.Context.ApplicationDbContext context = new PowerOfGod.Domain.Context.ApplicationDbContext();
+
+    string newname = User.Identity.GetUserName();
+
+    foreach (var name in context.employees)
+    {
+        if (name.EmpNum.Equals(User.Identity.GetUserName()))
+        {
+            newname = name.firstName.Substring(0, 1) + ". " + name.lastName;
+        }
+    }
+}
+<style>
+
+    #fix-it {
+        margin-top: 10px;
+    }
+</style>
+@if (Request.IsAuthenticated)
+{
+    <text>
+        <span class="navbar-link" id="fix-it"> @Html.ActionLink(newname, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</span>
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()" class="navbar-link" id="fix-it">Sign out</a>
+        }
+    </text>
+}

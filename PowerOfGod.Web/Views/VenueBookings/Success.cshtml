@@ -1,0 +1,19 @@
+﻿@model PowerOfGod.Domain.Entity.Booking.VenueBooking
+
+@{
+    ViewBag.Title = "Success";
+}
+
+<h2>Success</h2>
+
+<div>
+    @*<h4>Donation</h4>*@
+    <img src="~/images/donationHeader.png" />
+    <hr />
+    <p>Booking Date   :  @Html.DisplayFor(Date => Date.date)</p>
+    <p>By              :  @Html.DisplayFor(Name => Name.name)</p>
+    <p>Amount Donated R:  @Html.DisplayFor(Amount => Amount.amount)</p>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

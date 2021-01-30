@@ -1,0 +1,97 @@
+﻿@*@model IEnumerable<PowerOfGod.ViewModel.EmployeeViewModel.ContactUsViewModel>*@
+
+@model PowerOfGod.ViewModel.EmployeeViewModel.ContactUsViewModel
+
+
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_userLayout.cshtml";
+}
+<style>
+
+    fieldset {
+        padding-right: 20%;
+        width: 100%;
+        border: 2px 2px solid #000;
+    }
+
+    .link {
+        text-decoration: none;
+    }
+
+    .tabs {
+        padding-top: 2%;
+    }
+
+        .tabs span {
+            display: inline-block;
+            padding-right: 4px;
+        }
+
+    strong span {
+        display: inline-block;
+        padding-right: 6px;
+    }
+
+    .linespace strong {
+        padding-right: 10px;
+    }
+
+    .col-md-10 {
+        font-size: 1.1em;
+    }
+</style>
+<div style="margin-bottom:10%;"></div>
+<h2><img src="~/Content1/Contactus.png" width="35" height="35" /> Contact Us</h2>
+@if (TempData["Success"] != null)
+{
+    <div class="alert-success alert">@TempData["Success"]</div>
+}
+
+@using (Html.BeginForm("ContactUs", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.Label("Subject", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.subject)
+                @Html.ValidationMessageFor(model => model.subject)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Body", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.body)
+                @Html.ValidationMessageFor(model => model.body)
+            </div>
+        </div>
+        @*<div class="form-group">
+                @Html.Label("Category", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Category", new SelectList(ViewBag.Category), "General Ticket", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.category)
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.Label("Attachments", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="files" id="file" multiple />
+            </div>
+        </div>
+
+        @*<div class="col-md-10">
+                <input type="submit" class="submit" value="UploadScreenshots" />
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="width:250px">
+                <input type="submit" value="Send" class="btn btn-md btn-default" />
+            </div>
+        </div>
+    </div>
+}

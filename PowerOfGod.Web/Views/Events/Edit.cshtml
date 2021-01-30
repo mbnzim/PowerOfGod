@@ -1,0 +1,126 @@
+﻿@model PowerOfGod.Domain.Entity.Event.Event
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Event</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.EventID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Start, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Start, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Start, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartingTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StartingTime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.StartingTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.End, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.End, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Vanue, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Vanue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Vanue, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ThemeColor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @{
+                List<SelectListItem> Color = new List<SelectListItem>();
+
+                Color.Add(new SelectListItem { Text = "blue", Value = "blue" });
+                Color.Add(new SelectListItem { Text = "grey", Value = "grey" });
+                Color.Add(new SelectListItem { Text = "black", Value = "black" });
+                Color.Add(new SelectListItem { Text = "pink", Value = "pink" });
+                Color.Add(new SelectListItem { Text = "red", Value = "red" });
+                Color.Add(new SelectListItem { Text = "yellow", Value = "yellow" });
+                Color.Add(new SelectListItem { Text = "green", Value = "green" });
+                Color.Add(new SelectListItem { Text = "orange", Value = "orange" });
+                Color.Add(new SelectListItem { Text = "purple", Value = "purple" });
+                Color.Add(new SelectListItem { Text = "brown", Value = "brown" });
+            }
+            @Html.DropDownListFor(m => m.ThemeColor, Color, "Select...COLOR")
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor)
+            @Html.ValidationMessageFor(model => model.ThemeColor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsFullDay, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsFullDay)
+                @Html.ValidationMessageFor(model => model.IsFullDay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

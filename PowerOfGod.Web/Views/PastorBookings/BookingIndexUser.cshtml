@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PowerOfGod.Domain.Entity.Booking.PastorBooking>
+
+@{
+    ViewBag.Title = "BookingIndexUser";
+    Layout = "~/Views/Shared/_LayoutUserLess.cshtml";
+}
+
+<br /><br /><br /><br /><br />
+<h2>BookingIndexUser</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pastor.PfirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PastorBookingReason.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeStart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeEnd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookingAmount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberInUse)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pastor.PfirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PastorBookingReason.Reason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Start_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeStart)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeEnd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookingAmount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberInUse)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.PastorBookingID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PastorBookingID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PastorBookingID })*@
+        </td>
+    </tr>
+}
+
+</table>

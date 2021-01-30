@@ -1,0 +1,185 @@
+﻿@model PowerOfGod.ViewModel.ShoppingViewModel.OrderDetailModel
+@{
+    ViewBag.Title = "Order Details";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+<h2 class="title text-center">@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-5">
+        <h4>Order Details</h4>
+        <table class="table">
+            <tr>
+                <th width="140px">Order Number</th>
+                <td>
+                    @Html.DisplayFor(x => x.order.Order_ID)
+                </td>
+            </tr>
+            <tr>
+                <th>Date Requested</th>
+                <td>
+                    @Model.order.date_created.ToLongDateString()
+                </td>
+            </tr>
+            <tr>
+                <th>Shipping</th>
+                <td>
+                    @if (Model.order.shipped)
+                    {
+                        <i class="fa fa-check"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-ellipsis-h"></i>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>
+                    @Html.DisplayFor(x => x.order.status)
+                </td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <td>
+                    <a href="@Url.Action("Order_Tracking","Orders",new {id = Model.order.Order_ID })" class="btn btn-primary">
+                        Track Order
+                    </a>
+                </td>
+                @if (!User.IsInRole("Customer"))
+                {
+                    if (Model.order.status != "Delivered")
+                    {
+                        if (Model.order.status != "With courier" && Model.order.status == "Awaiting Payment" || Model.order.status == "At warehouse")
+                        {
+                            <td>
+                                <a href="@Url.Action("Mark_As_Packed","Orders",new {id = Model.order.Order_ID })" class="btn btn-primary">
+                                    Mark as Packed
+                                </a>
+                            </td>
+                        }
+                    }
+                }
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        @if (Model.shipping_method == "Standard delivery")
+        {
+            <h4>Receipt by Standard Delivery</h4>
+            <table class="table">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.address.street_number)</th>
+                    <td>
+                        @Html.DisplayFor(x => x.address.street_number)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.address.street_name)</th>
+                    <td>
+                        @Html.DisplayFor(x => x.address.street_name)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.address.City)</th>
+                    <td>
+                        @Html.DisplayFor(x => x.address.City)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.address.State)</th>
+                    <td>
+                        @Html.DisplayFor(x => x.address.State)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.address.ZipCode)</th>
+                    <td>
+                        @Html.DisplayFor(x => x.address.ZipCode)
+                    </td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.address.Country)</th>
+                    <td>
+                        @Html.DisplayFor(x => x.address.Country)
+                    </td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <hr />
+            <p>
+                Collection at our warehouse.
+                <br />
+                <i class="fa fa-map-marker"></i>  21 May St, Durban, 4001
+                <br />
+                <i class="fa fa-clock-o"></i>  8:30 am - 17:00 working hours
+                <br />
+            </p>
+        }
+    </div>
+</div>
+<div class="row">
+    <h4>Items in this Order</h4>
+    <table class="table">
+        <tr class="table-header-row">
+            <th>
+                Name
+            </th>
+            <th>
+                Qty
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+            </th>
+        </tr>
+        @foreach (var item in Model.order_items)
+        {
+            <tr>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Item.Name)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </th>
+                <th>
+                    @Html.DisplayFor(modelItem => item.price)
+                </th>
+                <th>
+                    @if (Model.order.status == "Delivered")
+                    {
+                        <a href="@Url.Action("Log_New","Exchange_n_Returns", new { id= Model.order.Order_ID,item_ID =item.item_id })" class="btn btn-default">
+                            Return Item
+                        </a>
+                    }
+                </th>
+            </tr>
+        }
+        <tr>
+            <td></td>
+            <td></td>
+            <th>@Html.DisplayFor(x => x.order_total)</th>
+        </tr>
+    </table>
+    <div class="row text-center">
+        @if (User.IsInRole("Customer"))
+        {
+            <a class="btn btn-default" href="@Url.Action("Order_History", "Orders")">
+                <i class="fa fa-angle-left"></i>
+                Back to List
+            </a>
+        }
+        else
+        {
+            <a class="btn btn-default" href="@Url.Action("Customer_Orders", "Orders")">
+                <i class="fa fa-angle-left"></i>
+                Back to List
+            </a>
+        }
+    </div>
+</div>
+

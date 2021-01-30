@@ -1,0 +1,165 @@
+$hl : #4183d7;
+
+// Generic Styles
+
+body {
+  
+  
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  font:16px lato;
+  color:#333;
+  padding:2em;
+  overflow:hidden;
+  
+  &:before {
+    position: absolute;
+    z-index: -1;
+    background:url('https://images.unsplash.com/photo-1428535172630-fb1c050ac3e0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&w=1080&fit=max&s=0a8d7f88526858c646d41e9b78936bf0') no-repeat center center;
+  background-size:cover;
+    filter: blur(5px);
+  -webkit-filter: blur(5px);
+    content:"";
+    width:106%;
+    height:106%;
+    top:-3%;
+    left:-3%;
+  }
+}
+icon {
+  font-family:fontawesome;
+}
+
+
+// Calendar Styles
+.cal {
+  background:rgba(228,241,254,.7);
+  padding:1em;
+  display:inline-block;
+  width:22em; 
+  box-shadow:0 2px 0 rgba(0,0,0,.1), 0 2px 8px rgba(0,0,0,.1);
+  margin-top:50px;
+  transform:.3s;
+  .cal-heading {
+    font-size:1.3em;
+    color:white;
+    opacity:.8;
+    margin-top:-50px;
+    text-shadow:0 2px 2px rgba(0,0,0,.5);
+  }
+  // Each individual event
+  .cal-event {
+    padding:1em 0;
+    border-bottom:1px solid white;
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+    
+    // Date Tile Icon
+    .cal-event-tile {
+      background:$hl;
+      color:white;
+      text-align:center;
+      width:3em;
+      height:3em;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-wrap:wrap;
+      padding:.2em;
+      margin-right:1em;
+      flex-shrink:0;
+      border-radius:.5em;
+      box-shadow:0 2px 5px rgba(0,0,0,.1);
+      
+      .cal-event-tile-date, .cal-event-tile-month {
+        width:100%;
+        line-height:1em;
+        margin:0;
+        padding:0;
+      }
+      .cal-event-tile-date {
+        font-size:1.5em;
+      }
+      .cal-event-tile-month {
+        font-size:1.1em;
+      }
+    }
+    
+    // Event Heading
+    
+      
+    .cal-event-title {
+      font-size:1.2em;
+      margin:0.5em 0;
+      color:$hl;
+    }
+    .cal-event-map {
+      display:inline-block;
+      color:$hl;
+      border:1px solid $hl;
+      text-align:center;
+      padding:.1em 1em;
+      border-radius:.2em;
+      text-decoration:none;
+      margin-top:.5em;
+       
+      &:hover {
+        background:$hl;
+        color:white;
+        border:1px solid $hl;
+      }
+    }
+    .cal-event-location, .cal-event-time {
+      font-weight:500;
+      margin:.2em 0;
+      display:flex;
+      justify-content:flex-start;
+      align-items:center;
+      color:#777;
+        
+      icon {
+        width:1.2em;
+        display:inline-block;
+        text-align:center;
+        margin-right:.5em;
+      }
+    }
+    
+   
+  }
+  .cal-hidden-events {
+    width:100%;
+    text-align:center;
+    margin:.5em 0;
+    color:$hl;
+    cursor:pointer;
+    
+    &:hover {
+      color:darken($hl,20%);
+    }
+  }
+      
+}
+
+
+.cal-event.ng-enter {
+  transition:0.3s linear all;
+  opacity:0;
+}
+
+/* The finishing CSS styles for the enter animation */
+.cal-event.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+.cal-event.ng-leave {
+  transition:0.4s linear all;
+  opacity:1;
+  max-height:200px;
+}
+.cal-event.ng-leave.ng-leave-active {
+  opacity:0;
+  max-height:0;
+}

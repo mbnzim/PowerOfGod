@@ -1,0 +1,134 @@
+﻿@model IEnumerable<PowerOfGod.ViewModel.MemberViewModel.MemberViewModel>
+
+
+@{
+    ViewBag.Title = "MemberViewModel";
+    Layout = "~/Views/Shared/_member.cshtml";
+}
+<head>
+    <style>
+        .page1 {
+            border: 2px solid gray;
+            margin-top: 10px;
+        }
+    </style>
+
+    <style>
+        .page2 {
+            background-color: #1a2732;
+            height: 5%;
+        }
+
+        .center {
+            margin: auto;
+            /*width: 60%;
+            border: 3px solid #73AD21;*/
+            padding: 10px;
+            color: white;
+        }
+
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        .image {
+            padding: 5px;
+        }
+
+        .btn {
+            padding-left: 5px;
+            width: 50px;
+        }
+    </style>
+</head>
+<div class="page2">
+    <div style="margin-bottom:8%;"></div>
+    <div class="center">
+        <h3 class="page-header">
+            <i class="icon_profile" style="color:white"></i>
+            My Profile
+
+        </h3>
+    </div>
+</div>
+<body>
+    <br />
+    <div class="page1">
+        @foreach (var item in Model)
+        {
+            <table>
+                <tr>
+                    <td>
+                        <div class="image">
+                            <a href=""><img src="data:image/png;base64,@Convert.ToBase64String(item.Picture, 0, item.Picture.Length)" style="width: 150px; height: 150px" alt="" /></a><br />
+                        </div>
+                       
+                        <div class="btn">
+                             <input style="width: 150px; height: 50px;" type="submit" value="Edit Profile" onclick="@("window.location.href='" + @Url.Action("Edit", "Members", new { id = item.MemberId }) + "'");" />
+                        </div>
+                       
+                    </td>
+                    <td>
+                        <h3><b><i>Welcome back @Html.DisplayFor(modelItem => item.fullname) we are glad to have you here!!</i></b></h3>
+                    </td>
+                    @*<td class="button">
+                       
+                    </td>*@
+                </tr>
+            </table>
+
+           
+            <br />
+
+            //===========================Profile=====================
+            <table>
+                <tr>
+                    <td>@Html.DisplayName("Full Name")</td>
+                    <td>@Html.DisplayFor(modelItem => item.fullname)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayName("Identity Number")</td>
+                    <td>@Html.DisplayFor(modelItem => item.IDNumber)</td>
+                </tr>
+                <tr>
+                    <td>@Html.DisplayName("Email Address")</td>
+                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+
+                </tr>
+                <tr>
+                    <td> @Html.DisplayName("Role")</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserRole)</td>
+
+                </tr>
+                <tr>
+                    <td>@Html.DisplayName("Phone Number")</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+
+                </tr>
+                <tr>
+                    <td>@Html.DisplayName("Physical Address")</td>
+                    <td>@Html.DisplayFor(modelItem => item.address)</td>
+
+                </tr>
+            </table>
+
+            //===========================//Profile=====================
+
+        }
+    </div>
+
+
+</body>

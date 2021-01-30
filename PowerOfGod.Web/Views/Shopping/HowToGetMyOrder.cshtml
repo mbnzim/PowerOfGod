@@ -1,0 +1,188 @@
+﻿
+@{
+    ViewBag.Title = "How would you like to receive your order?";
+    Layout = "~/Views/Shared/_CartLayout.cshtml";
+}
+
+
+<h2 class="title text-center">@ViewBag.Title</h2>
+<form method="post">
+    <div class="row">
+        <div class="board">
+            <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+            <div class="board-inner">
+                <ul class="nav nav-tabs" id="myTab">
+                    <li class="active" style="text-align:center">
+                        <a href="#home" data-toggle="tab" title="Collect at warehouse">
+                            <span class="round-tabs">
+                                <i class="fa fa-home"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#profile" data-toggle="tab" title="Standard Delivery">
+                            <span class="round-tabs">
+                                <i class="fa fa-truck"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <h4 class="head text-center">Collect your order at Power Of God Assembles church.</h4>
+                    <h4> <i class="fa fa-map-marker"></i>  Umlazi J isidingo Road, Durban, 4031 </h4>
+                    <h4> <i class="fa fa-clock-o"></i>  Monday - Friday</h4>
+                    <h4> <i class="fa fa-clock-o"></i>  8:30 am - 17:00 pm working hours  Also Sundays During service</h4>
+                    <a href="@Url.Action("PlaceOrder","Shopping", new {id = "collect" })" class="btn btn-default"> Continue</a>
+                </div>
+                <div class="tab-pane fade" id="profile">
+                    <h3 class="head text-center">Deliver the order to my address</h3>
+                    <div class="input_field">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            @*<textarea type="text" class="form-control" id="Physical_Address" ng-model="PropertyModel.Physical_Address" required ng-minlength="3" ng-maxlength="255" style="min-height:100px; resize:none" placeholder="Physical Address"></textarea>*@
+                            <div id="locationField">
+                                <input id="autocomplete" name="autocomplete" placeholder="Enter your address here" required class="form-control" onFocus="geolocate()" type="text" style="min-width:360px" />
+                            </div>
+                            <br />
+                            <table id="address">
+                                <tr>
+                                    <td style="color:black;width:70px"><i>Street</i></td>
+                                    <td style="min-width:460px" colspan="2">
+                                        <input id="street_number" name="street_number" class="field form-control disabled" disabled required="required" style="max-width:60px" />
+                                        <input class="field form-control disabled" id="route" disabled name="street_name" required="required" style="max-width:220px" />
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="color:black;width:70px"><i>City</i></td>
+                                    <td class="wideField" colspan="3">
+                                        <input class="field  form-control disabled" id="locality" disabled name="City" required="required" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:black;width:70px"><i>State</i></td>
+                                    <td style="min-width:460px" colspan="2">
+                                        <input class="field form-control disabled" id="administrative_area_level_1" name="State" disabled style="max-width:80px" />
+                                        &nbsp;&nbsp;&nbsp;
+                                        <i>Zip Code</i>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <input class="field form-control disabled" id="postal_code" name="ZipCode" disabled required="required" style="max-width:102px" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color:black;width:70px"><i>Country</i></td>
+                                    <td colspan="3">
+                                        <input class="field  form-control disabled" disabled name="Country" id="country" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <input type="submit" value="Continue" class="btn btn-default" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    var $zoho = $zoho || {}; $zoho.salesiq = $zoho.salesiq ||
+        { widgetcode: "4133bf52dc5186c72b4359a9ed99f5943ab97e02475cbf6f18bf8d22110d2cbd3df36f2dd283b7efe1698e5454b4a3fa", values: {}, ready: function () { } };
+    var d = document; s = d.createElement("script"); s.type = "text/javascript"; s.id = "zsiqscript"; s.defer = true;
+    s.src = "https://salesiq.zoho.com/widget"; t = d.getElementsByTagName("script")[0]; t.parentNode.insertBefore(s, t); d.write("<div id='zsiqwidget'></div>");
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('a[title]').tooltip();
+    });
+</script>
+<script>
+      // This example displays an address form, using the autocomplete feature
+      // of the Google Places API to help users fill in the information.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var placeSearch, autocomplete;
+      var componentForm = {
+        street_number: 'short_name',
+        route: 'long_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+      };
+
+      function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            @*/** @type {!HTMLInputElement} */*@(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+      }
+
+      function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        for (var component in componentForm) {
+            document.getElementById(component).value = '';
+            document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+            document.getElementById(addressType).value = val;
+          }
+        }
+      }
+
+      // Bias the autocomplete object to the user's geographical location,
+      // as supplied by the browser's 'navigator.geolocation' object.
+      function geolocate() {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var geolocation = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            var circle = new google.maps.Circle({
+              center: geolocation,
+              radius: position.coords.accuracy
+            });
+            autocomplete.setBounds(circle.getBounds());
+          });
+        }
+      }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAay3hs9-BpmDIMIcmcA-KDGdqZeOEOoV8&libraries=places&callback=initAutocomplete"
+        async defer></script>
+<script>
+    $(function () {
+        var input = document.getElementById("autocomplete");
+        var autocomplete = new google.maps.places.Autocomplete(input);
+
+        $('#my-modal').modal('show');
+
+    });
+
+</script>
